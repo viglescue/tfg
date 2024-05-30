@@ -1,0 +1,238 @@
+\documentclass[12pt,a4paper,Spanish]{book}
+%Va a ser un libro (book), el tamaño es a4, la lengua castellano%%%
+
+\usepackage[spanish]{babel} %palabras de multitud de idiomas. Aquí no se si 
+\usepackage[utf8]{inputenc} %cambio latin por utf-8
+\usepackage{amsmath} %macros AM
+\usepackage{amsthm} %macros AMS para teoremas.
+\usepackage{amsfonts} %Permite usar fuentes.
+%\usepackage[dvips]{epsfig} %Inclusión de figuras postscript
+\usepackage{indentfirst}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{hyperref}
+\setlength{\parskip}{8mm} %Separación entre parrafos 
+\usepackage{multirow, array} % para las tablas
+%\usepackage{longtable} % para tablas largas
+\usepackage{afterpage}
+\usepackage[left=3 cm,top=2.5cm,right=3cm,bottom=2.5cm]{geometry} 
+\usepackage{cite} % para contraer referencias
+
+\DeclareGraphicsExtensions{.jpg, .pdf, .png, .gif, .eps}
+
+
+
+\begin{document}
+
+\renewcommand{\listtablename}{Índice de tablas} 
+
+%%PORTADA%%
+
+\begin{titlepage}
+\begin{center}
+
+
+\begin{figure}
+	\centering
+\includegraphics[width=0.3\textwidth]{./figs/logoURJC}
+\end{figure}
+
+\begin{center}
+\large
+ESCUELA DE INGENIERÍA DE FUENLABRADAa
+
+\vspace*{0.15in}
+GRADO EN INGENIERÍA EN  \\
+\vspace*{0.6in}
+
+
+
+
+{\large \bf TRABAJO FIN DE GRADO}\\
+\end{center}
+\vspace*{0.2in}
+{\large
+{TÍTULO} \\
+}
+\vspace*{0.3in}
+\vspace*{0.3in}
+
+\vspace*{0.1in}
+\end{center}
+
+{\large
+Autor:   \\[0.2cm]
+
+Tutora: \\[0.15cm]
+
+}
+\vspace*{0.1in}
+\vspace*{0.1in}
+
+\begin{center}Curso académico 2023/2024\end{center}
+
+
+
+\end{titlepage}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+$\ $
+\thispagestyle{empty} % para que no se numere esta pagina
+
+%%%%%%%%%%%%%%%%%%%%%dedicatoria%%%%%%%
+\chapter*{}
+\pagenumbering{Roman} % para comenzar la numeracion de paginas en numeros romanos
+\begin{flushright}
+\textit{“bla bla" ()}
+
+\end{flushright}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter*{Agradecimientos} % si no queremos que añada la palabra "Capitulo"
+\addcontentsline{toc}{chapter}{Agradecimientos} % si queremos que aparezca en el índice
+\markboth{AGRADECIMIENTOS}{AGRADECIMIENTOS} % encabezado 
+
+AGRADECIMIENTOS 
+
+prueba
+
+\chapter*{Resumen}
+\addcontentsline{toc}{chapter}{Resumen} % si queremos que aparezca en el índice
+
+VAS ESCRIBIENDO
+\tableofcontents
+
+
+
+\cleardoublepage
+\addcontentsline{toc}{chapter}{Lista de figuras} % para que aparezca en el indice de contenidos
+\listoffigures % indice de figuras
+
+\cleardoublepage
+\addcontentsline{toc}{chapter}{Lista de tablas} % para que aparezca en el indice de contenidos
+\listoftables % indice de tablas
+
+
+
+%\listoffigures
+%\listoftables
+
+
+
+\chapter{INTRODUCCION}\label{Introduccion}
+\pagenumbering{arabic} % para empezar la numeración con números
+
+
+
+\section{Motivación}
+
+
+\subsection{título}
+
+
+vkkkkk
+
+
+
+\section{Objetivos} 
+
+OBJETIVOS
+
+\begin{itemize}
+\item OB1 jjjjj	
+
+\item  en la figure
+
+\item OB3
+\end{itemize}
+
+\section{Metodología y estructura de la memoria}
+
+Metodología:
+
+\begin{itemize}
+
+\item Revisión bibliográfica ...
+
+\item Aprendizaje de ...
+\item Análisis exploratorio de la base de datos...\cite{veterinaria}
+
+\item ...
+
+Estructura de la memoria:
+
+\item En el Capítulo ...
+
+\item ...
+
+\item ...
+
+\item ...
+
+\end{itemize}
+
+\chapter{Estado del arte}\label{Estado del arte}
+blalba \cite{yang2006music}
+\section{ECG}
+
+
+
+\section{VFC,SampEn,MSE,TI}
+\section{FA}
+\section{Técnicas de ML}
+
+
+\subsection{Naive Bayes}\label{Modelo OLS}
+
+\subsection{...}
+
+\subsection{Aspectos prácticos}
+Normalización datos, Entrenamiento, Validacion...
+\chapter{Descripción de datos}
+
+
+\chapter{Experimentos}
+
+
+\section{1}
+\section{2}
+
+
+
+
+
+%------------------------------------------------------------------------------------------------
+%Chapter Resultados
+%------------------------------------------------------------------------------------------------
+\chapter{Resultados}\label{Analisis exploratorio}
+
+
+
+\section{Experimento 1}
+
+En la Tabla....
+
+\section{Experimento 2} 
+
+\section{....} 
+
+
+
+
+\chapter{Conclusiones}\label{Conclusiones}
+
+
+
+
+%%%%%BIBLIOGRAFÍA%%%%%%%%%%%%%%%
+\begin{thebibliography}{99}
+
+\bibitem{veterinaria} \textsc{Publicación complejo respiratiorio porcino}  \textit{http://www.webveterinaria.com}
+	
+\bibitem{yang2006music}\textsc{
+YANG, Yi-Hsuan; LIU, Chia-Chu; CHEN, Homer H. Music emotion classification: A fuzzy approach. En Proceedings of the 14th ACM international conference on Multimedia. 2006. p. 81-84.
+}
+
+\end{thebibliography}
+
+\end{document}
