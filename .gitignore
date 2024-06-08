@@ -5,4 +5,13 @@ datos.csv
 recap_data.csv
 /DEAM
 /normativa
+*.aux
+PRIMER_LIBRO.lof
+PRIMER_LIBRO.log
+PRIMER_LIBRO.lot
+PRIMER_LIBRO.out
+PRIMER_LIBRO.pdf
+PRIMER_LIBRO.synctex.gz
+PRIMER_LIBRO.toc
+
 
