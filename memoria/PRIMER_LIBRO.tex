@@ -124,19 +124,20 @@ VAS ESCRIBIENDO
 
 \pagenumbering{arabic} % para empezar la numeración con números
 \chapter{Introducción}
-La música juega un rol importante en la vida de la personas, aun más en la era digital. El uso de Internet ha contribuido enormemente en el crecimiento de librerías digitales de música, y con ello, la información y metadatos disponibles de cada pista de audio.
+\section{Motivación y contexto}
+La música juega un rol importante en la vida de la personas, aun más en la era digital. El uso de Internet ha contribuido enormemente en el crecimiento de librerías digitales de música, y con ello, la información y metadatos disponibles de cada pista de audio. El poder emocional de la música es el motivo de su aplicación en áreas tan diversas como la industria del juego, la industria cinematográfica, marketing y musicoterapia, pero los conocimientos científicos sobre este fenómeno están lejos de ser completos o reveladores \cite{eerola2012review}.
 \newline
-Tradicionalmente, la clasificación de música ha estado basada en catálogos de metadatos (artista, album, título de la canción, ...) \cite{yang2011music}. Esta clasificación puede no ser suficiente para el usuario. Tener acceso a una categorización de la música en función de emociones o estados de ánimo puede ser interesante.
+La relación entre música y emoción ha sido objeto de muchos debates académicos e investigaciones empíricas en muchas disciplinas diferentes donde están incluidas la filosofía, la musicología, la psicología, la biología, la antropología y la sociología. Sin embargo, no fue hasta la década de los 2000, cuando el estudio de este tema desde el punto de vista de la ingeniería, comenzó a desarrollar un modelo computacional de emoción musical para la recuperación y organización de la música basada en emociones \cite{yang2011music}.
 \newline
-La relación entre música y emoción ha sido objeto de muchos debates académicos e investigaciones empíricas en muchas disciplinas diferentes donde están incluidas la filosofía, la musicología, la psicología, la biología, la antropología y la sociología. Sin embargo, no fue hasta la década de los 2000, cuando el estudio de este tema desde el punto de vista de la ingeniería comenzó a desarrollar un modelo computacional de emoción musical para la recuperación y organización de la música basada en emociones.\cite{yang2011music}
-Aquí es donde entra en juego el Reconocimiento Musical de Emociones (Music Emotion Recognition). MER categoriza emociones y aplica técnicas de Machine Learning (Aprendizaje Máquina) para clasificarlas, usando diferentes características extraídas de la señal acústica de la canción \cite{yang2011music}
-\section{Historia y estado actual de los sistemas MER}
+Tradicionalmente, la clasificación de música ha estado basada en catálogos de metadatos (artista, album, título de la canción, ...) \cite{yang2011music}. Esta clasificación puede no ser suficiente para el usuario. Tener acceso a una categorización de la música en función de emociones o estados de ánimo puede ser de gran utilidad para muchas aplicaciones. Imaginemos un reproductor de música que, además de recomendarte canciones según un grupo o un estilo musical, sea capaz de hacerlo según el estado de ánimo que tengas.
+\newline
+Aquí es donde entra en juego el Reconocimiento Musical de Emociones (Music Emotion Recognition). MER categoriza emociones y aplica técnicas de Machine Learning (Aprendizaje Máquina) para clasificarlas usando diferentes características extraídas de la señal acústica de la canción \cite{yang2011music}.
+\newline
+En este trabajo blablablablabla..........
 
-Las emociones son unas 
 \section{Objetivos del trabajo}
 El objetivo principal del trabajo es diseñar un sistema para el reconocimiento de emociones en pistas de audio.
 Los objetivos específicos que se plantean son los siguientes:
-
 \begin{itemize}
 \item Estudiar el Estado del Arte de los sistemas MER
 \item Examinar técnicas de Aprendizaje Máquina (Machine Learning) para la detección de emociones
@@ -147,39 +148,33 @@ Los objetivos específicos que se plantean son los siguientes:
  		\item entrenar y probar los sistemas para ajustar parámetros
  		\item evaluar las técnicas de Machine Learning según su capacidad para predecir los valores requeridos 		
  	\end{itemize}
-
 \end{itemize}
 
 \section{Metodología y estructura de la memoria}
+La memoria está compuesta por cuatro apartados:
+\begin{enumerate}
+	\item Una introducción de la memoria donde se expone el contexto y la motivación del trabajo.
+	\item El capítulo de \textit{Estado del arte} donde se expone:
+	\begin{itemize}
+		\item una introducción a la campo de estudio MER,
+		\item una descripción de Machine Larning y los diferentes tipos de algoritmos que hay, 
+		\item y una explicación de los modelos de regresión y algunos de los ejemplo más comunes
+	\end{itemize}
+	\item El capítulo de \textit{Experimentos} dividido en:
+	\begin{itemize}
+		\item descripción de los datos utilizados,
+		\item y los algoritmos de Machine Learning empleados en el trabajo
+	\end{itemize}
+	\item Los resultados detallados de los experimentos realizados en el capítulo anterior.
+	\item Las conclusiones obtenidas del trabajo, y líneas futuras en las que seguir profundizando en MER.
+\end{enumerate}
 
-Metodología:
-
-\begin{itemize}
-
-\item Revisión bibliográfica ...
-
-\item Aprendizaje de ...
-\item Análisis exploratorio de la base de datos...
-
-\item ...
-
-Estructura de la memoria:
-
-\item En el Capítulo ...
-
-\item ...
-
-\item ...
-
-\item ...
-
-\end{itemize}
 
 \chapter{Estado del arte}
-<<<< aquí hay que meter una breve introducción de lo que aparece en el estado del arte
 
 \section{Music Emotion Recognition}
-Music Emotion Recognition (MER) es un campo de estudio que se enfoca en identificar y clasificar las emociones que la música evoca en los oyentes. Para ello, se extraen las características relevantes de las pistas de audio, se procesan, se evalúan y luego se asocian con determinadas emociones \cite{gomez2021music}
+
+Music Emotion Recognition (MER) es un campo de estudio que se enfoca en identificar y clasificar las emociones que la música evoca en los oyentes. Para ello, se extraen las características relevantes de las pistas de audio, se procesan, se evalúan, y posteriormente se asocian con determinadas emociones \cite{GomezCanon2021SPM}.
 \newline
 MER es una de las disciplinas de alto nivel más desafiantes en Music Information Retrieval (MIR). MIR un campo de investigación que se centra en la extracción e inferencia de características significativas de la música (a partir de la señal de audio), la clasificación de la música utilizando estas características, y el desarrollo de diferentes esquemas de búsqueda y recuperación. Tiene como objetivo poner a disposición de los individuos el vasto almacén de música del mundo \cite{schedl2014music}
 
@@ -187,7 +182,7 @@ MER es una de las disciplinas de alto nivel más desafiantes en Music Informatio
 
 Los modelos teóricos de la emoción adoptados por los estudios se dividieron en cuatro clases: discretos, dimensionales, misceláneos y específicos de la música \cite{eerola2012review}. 
 \newline
-Uno de los más comunes usado en psicología es el modelo dimensional propuesto por Russell \cite{posner2005circumplex}. El modelo consiste en la representación de las emociones a través de dos dimensiones: valencia (agrado-desagrado) y excitación (representa el nivel de valencia). Cada emoción es una representación linea de la combinación de estas dos dimensiones
+Uno de los más comunes usado en psicología es el modelo dimensional propuesto por Russell \cite{posner2005circumplex}. El modelo consiste en la representación de las emociones a través de dos dimensiones: valencia ( nivel de agrado o desagrado) y excitación (representa el nivel de energia o activación de la valencia). Cada emoción es una representación linea de la combinación de estas dos dimensiones
 
 \begin{figure}[h]
 	\centering
@@ -205,6 +200,7 @@ Un aspecto importante en MER es la categorización de las emociones según su na
 \cite{yang2011music} expone un ejemplo claro para distinguir entre los dos tipos: el Cumpleaños Feliz. Si analizamos la canción por sus características, se podría decir que es una canción alegre (emoción percibida). Pero es posible que para algunas personas les produzca tristeza al asociar un recuerdo con esta canción (emoción inducida)
 
 \subsection{Estado actual MER}
+
 \subsection{Estado futuro MER}
 
 
@@ -298,11 +294,38 @@ Una característica principal de los modelos de regresión es que la relación e
 \subsection{Árbol de regresión}
 
 
-\chapter{Descripción de datos}
 \chapter{Experimentos}
-%------------------------------------------------------------------------------------------------
-%Chapter Resultados
-%------------------------------------------------------------------------------------------------
+En este capítulo se describe el proceso del desarrollo de la aplicación MER. Primeramente se describen el conjunto de datos utilizado en el experimento. Seguidamente se describe cómo han sido manipulados los datos para que sean utilizados por el sistema. Por último, se describen las técnicas de Machine Learning utilizadas en la aplicación.
+\section{Conjunto de datos}
+El conjunto de datos elegido para el experimento es DEAM dataset - The MediaEval Database for Emotional Analysis of Music \cite{AlajankiEmoInMusicAnalysis}. El conjunto de datos DEAM consta de 1802 extractos y canciones libres de derechos que provienen de varias fuentes: freemusicarchive.org (FMA), jamendo.com,
+y el conjunto de datos medleyDB.
+\newline
+Existen tres tipos de información claramente diferenciables por cada pista de audio del conjunto de datos: características, valores de valencia y excitación, y metadatos.
+
+\subsubsection{Características}
+Los datos presentan un conjunto de características extraídas de la librería openSMILE \cite{openSMILE}. Cada pista de audio está representada en un fichero CSV, donde las pistas se dividen en ventanas de 500ms. En cada ventana se muestran dos valores de cada una de las características: la media y la desviación estándar
+Las características presentes en el conjunto de datos son:
+\begin{itemize}
+	\item carac 1
+	\item carac 2
+	\item carac 3
+	\item carac 4
+\end{itemize}
+
+\subsubsection{Valencia y excitación}
+Los datos de valencia y excitación se muestran en el conjunto de datos como valores continuos dentro del rango [1, 9].
+\newline
+Para la extracción de estos valores, se eligieron 45 segundos de cada canción de forma aleatoria (posteriormente se descartaron los 15 primeros segundos debido a la inestabilidad de las anotaciones al inicio de los clips). Los 45 segundos se dividieron en ventanas de 500ms, y por cada ventana se anotaron 10 valores para de valencia y excitación.
+\newline
+En el conjunto de datos están presentes todas estas anotaciones, junto con los valores de media y desviación estándar de cada canción. Serán estos últimos lo que se usarán en el desarrollo del trabajo
+
+\subsubsection{Metadatos}
+En el conjunto de datos de DEAM \cite{AlajankiEmoInMusicAnalysis} también hay información acerca de las canciones: título de la canción, artista, álbum, géneros musicales y etiquetas
+
+\section{Desarrollo}
+\subsection{Extracción y manipulación de los datos}
+\subsection{modelo ML1}
+\subsection{modelo ML2}
 \chapter{Resultados}
 \chapter{Conclusiones}
 
