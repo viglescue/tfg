@@ -10,7 +10,7 @@
 \usepackage{indentfirst}
 \usepackage{graphicx}
 \usepackage{subfigure}
-\usepackage{hyperref}
+%\usepackage{hyperref}
 \setlength{\parskip}{8mm} %Separación entre parrafos 
 \usepackage{multirow, array} % para las tablas
 %\usepackage{longtable} % para tablas largas
@@ -21,6 +21,7 @@
 \usepackage[backend=biber]{biblatex}
 \addbibresource{biblio.bib}
 \usepackage{setspace}
+%\usepackage{titlesec}
 \spacing{1.5}
 \DeclareGraphicsExtensions{.jpg, .pdf, .png, .gif, .eps}
 
@@ -43,7 +44,7 @@
 
 \begin{center}
 \large
-ESCUELA DE INGENIERÍA DE FUENLABRADAa
+ESCUELA DE INGENIERÍA DE FUENLABRADA
 
 \vspace*{0.15in}
 GRADO EN INGENIERÍA DE SISTEMAS AUDIOVISUALES Y MULTIMEDIA \\
@@ -118,10 +119,6 @@ VAS ESCRIBIENDO
 
 
 
-%\listoffigures
-%\listoftables
-
-
 \pagenumbering{arabic} % para empezar la numeración con números
 \chapter{Introducción}
 \section{Motivación y contexto}
@@ -168,10 +165,7 @@ La memoria está compuesta por cuatro apartados:
 	\item Los resultados detallados de los experimentos realizados en el capítulo anterior.
 	\item Las conclusiones obtenidas del trabajo, y líneas futuras en las que seguir profundizando en MER.
 \end{enumerate}
-
-
 \chapter{Estado del arte}
-
 \section{Music Emotion Recognition}
 
 Music Emotion Recognition (MER) es un campo de estudio que se enfoca en identificar y clasificar las emociones que la música evoca en los oyentes. Para ello, se extraen las características relevantes de las pistas de audio, se procesan, se evalúan, y posteriormente se asocian con determinadas emociones \cite{GomezCanon2021SPM}.
@@ -304,12 +298,28 @@ Existen tres tipos de información claramente diferenciables por cada pista de a
 
 \subsubsection{Características}
 Los datos presentan un conjunto de características extraídas de la librería openSMILE \cite{openSMILE}. Cada pista de audio está representada en un fichero CSV, donde las pistas se dividen en ventanas de 500ms. En cada ventana se muestran dos valores de cada una de las características: la media y la desviación estándar
-Las características presentes en el conjunto de datos son:
+Las características presentes en el conjunto de datos son \cite{openSMILEfeatures}:
 \begin{itemize}
-	\item carac 1
-	\item carac 2
-	\item carac 3
-	\item carac 4
+	\item Energía
+	\item Intensidad de fotograma/sonoridad (aproximación)
+	\item Espectros de banda crítica (Mel/Bark/Octave, filtros de enmascaramiento triangulares)
+	\item Mel-/Bark-Frequency-Cepstral Coefficients (MFCC)
+	\item Espectros auditivos
+	\item Sonoridad aproximada a partir de espectros auditivos.
+	\item Coeficientes perceptivos lineales predictivos (PLP)
+	\item Coeficientes cepstrales predictivos lineales perceptivos (PLP-CC)
+	\item Coeficientes predictivos lineales (LPC)
+	\item Pares espectrales de líneas (LSP, también conocido como LSF)
+	\item Frecuencia fundamental (mediante el método ACF/Cepstrum y mediante sumación subarmónica (SHS))
+	\item Probabilidad de emisión de voz a partir del pico del espectro ACF y SHS
+	\item Calidad de voz: Jitter y Shimmer
+	\item Frecuencias de formantes y anchos de banda.
+	\item Tasa de cruce por cero y media
+	\item Características espectrales (energías de banda arbitrarias, puntos de caída, centroide, entropía, maxpos, minpos, varianza (= dispersión), asimetría, curtosis, pendiente)
+	\item Nitidez psicoacústica, armonía espectral.
+	\item  CROMA (espectros de semitonos deformados en octavas) y funciones CENS (CROMA suavizado y normalizado de energía)
+	\item Funciones derivadas de CHROMA para reconocimiento de acordes y claves
+	\item F0 Relaciones de armónicos
 \end{itemize}
 
 \subsubsection{Valencia y excitación}
