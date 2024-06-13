@@ -1,4 +1,4 @@
-\documentclass[12pt,a4paper,Spanish]{book}
+\documentclass[12pt,a4paper,Spanish]{article}
 %Va a ser un libro (book), el tamaño es a4, la lengua castellano%%%
 
 %\[spanish]{babel} %palabras de multitud de idiomas. Aquí no se si 
@@ -10,20 +10,33 @@
 \usepackage{indentfirst}
 \usepackage{graphicx}
 \usepackage{subfigure}
+\usepackage{afterpage}
+\usepackage{float}
+\newcommand\blankpage{%
+	\null
+	\thispagestyle{empty}%
+	\newpage}
 %\usepackage{hyperref}
+\usepackage{afterpage}
 \setlength{\parskip}{8mm} %Separación entre parrafos 
 \usepackage{multirow, array} % para las tablas
 %\usepackage{longtable} % para tablas largas
-\usepackage{afterpage}
 \usepackage[left=3 cm,top=2.5cm,right=3cm,bottom=2.5cm]{geometry} 
 %\usepackage{cite} % para contraer referencias
 \usepackage[utf8]{inputenc}
 \usepackage[backend=biber]{biblatex}
 \addbibresource{biblio.bib}
 \usepackage{setspace}
-%\usepackage{titlesec}
+\usepackage{titlesec}
 \spacing{1.5}
 \DeclareGraphicsExtensions{.jpg, .pdf, .png, .gif, .eps}
+% para nivel 4 de secciones
+\setcounter{secnumdepth}{4} 
+\setcounter{tocdepth}{4}
+\titleformat{\paragraph}
+{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+\titlespacing*{\paragraph}
+{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
 
 
 
@@ -31,28 +44,20 @@
 
 \renewcommand{\listtablename}{Índice de tablas} 
 
-%%PORTADA%%
+%% --------------- PORTADA -----------------------%%
 
 \begin{titlepage}
 \begin{center}
-
-
 \begin{figure}
 	\centering
 \includegraphics[width=0.3\textwidth]{./figs/logoURJC}
 \end{figure}
-
 \begin{center}
 \large
 ESCUELA DE INGENIERÍA DE FUENLABRADA
-
 \vspace*{0.15in}
 GRADO EN INGENIERÍA DE SISTEMAS AUDIOVISUALES Y MULTIMEDIA \\
 \vspace*{0.6in}
-
-
-
-
 {\large \bf TRABAJO FIN DE GRADO}\\
 \end{center}
 \vspace*{0.2in}
@@ -61,67 +66,99 @@ GRADO EN INGENIERÍA DE SISTEMAS AUDIOVISUALES Y MULTIMEDIA \\
 }
 \vspace*{0.3in}
 \vspace*{0.3in}
-
 \vspace*{0.1in}
 \end{center}
-
 {\large
 Autor: Víctor Iglesias Cuevas  \\[0.2cm]
-
 Tutora: Rebeca Goya Esteban \\[0.15cm]
-
 }
 \vspace*{0.1in}
 \vspace*{0.1in}
-
 \begin{center}Curso académico 2023/2024\end{center}
-
-
-
 \end{titlepage}
-%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%% ------------------- CITA --------------------- %%
 \newpage
-$\ $
 \thispagestyle{empty} % para que no se numere esta pagina
-
-%%%%%%%%%%%%%%%%%%%%%dedicatoria%%%%%%%
-\chapter*{}
-\pagenumbering{Roman} % para comenzar la numeracion de paginas en numeros romanos
+%\pagenumbering{Roman} % para comenzar la numeracion de paginas en numeros romanos
 \begin{flushright}
-\textit{“bla bla" ()}
-
+	\vspace*{5cm}
+ 	\textit{“esto es una cita" (el que hizo la cita)}
 \end{flushright}
-%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\chapter*{Agradecimientos} % si no queremos que añada la palabra "Capitulo"
-\addcontentsline{toc}{chapter}{Agradecimientos} % si queremos que aparezca en el índice
-\markboth{AGRADECIMIENTOS}{AGRADECIMIENTOS} % encabezado 
 
-AGRADECIMIENTOS 
 
-prueba
 
-\chapter*{Resumen}
-\addcontentsline{toc}{chapter}{Resumen} % si queremos que aparezca en e
 
-VAS ESCRIBIENDO
+%% ------------------- AGRADECIMIENTOS --------------------- %%
+\newpage
+\thispagestyle{plain}
+\section*{Agradecimientos} % si no queremos que añada la palabra "Capitulo"
+\addcontentsline{toc}{section}{Agradecimientos} % si queremos que aparezca en el índice
+%\markboth{AGRADECIMIENTOS}{AGRADECIMIENTOS} % encabezado 
+
+aquí van los agradecimientos
+
+
+
+
+
+
+
+
+
+%% -------------------- RESUMEN --------------------%%
+\newpage
+\section*{Resumen}
+\addcontentsline{toc}{section}{Resumen} % si queremos que aparezca en e
+Esto es un resumen
+
+
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%% - INDICE - %%%%%%%%%%%%%
+\newpage
+\renewcommand*\contentsname{ÍNDICE} % Se modifica el nombre por defecto de la "Table Of Contents" (tabla de contenidos, índice) para pasar a llamarla "ÍNDICE".
 \tableofcontents
+\afterpage{\blankpage} % Se añade una página en blanco después del índice.
 
 
 
-\cleardoublepage
-\addcontentsline{toc}{chapter}{Lista de figuras} % para que aparezca en el indice de contenidos
-\listoffigures % indice de figuras
 
-\cleardoublepage
-\addcontentsline{toc}{chapter}{Lista de tablas} % para que aparezca en el indice de contenidos
-\listoftables % indice de tablas
-
+%%%%%%%%%%%%%% - INDICE DE TABLAS- %%%%%%%%%%%%%
+\newpage
+\renewcommand{\listtablename}{ÍNDICE DE TABLAS} % Se define el nombre del índice de tablas.
+\listoftables % Se genera automáticamente el índice con las distintas tablas del documento (entorno \table o \longtable).
+\addcontentsline{toc}{section}{ÍNDICE DE TABLAS} % Se añade manualmente el apartado al índice (Table Of Contents, TOC).
 
 
-\pagenumbering{arabic} % para empezar la numeración con números
-\chapter{Introducción}
-\section{Motivación y contexto}
+
+
+%%%%%%%%%%%%%% - INDICE DE FIGURAS- %%%%%%%%%%%%%
+\newpage
+\renewcommand{\listfigurename}{ÍNDICE DE FIGURAS} % Se define el nombre del índice de figuras.
+\listoffigures % Se genera automáticamente el índice con las distintas figuras del documento (entorno \figure).
+\addcontentsline{toc}{section}{ÍNDICE DE FIGURAS} % Se añade manualmente el apartado al índice (Table Of Contents, TOC).
+
+
+
+
+
+
+
+%%%%%%%%%%%%%% - INTRODUCCIÓN- %%%%%%%%%%%%%
+\newpage
+%\pagenumbering{arabic} % para empezar la numeración con números
+\section{Introducción}
+\subsection{Motivación y contexto}
 La música juega un rol importante en la vida de la personas, aun más en la era digital. El uso de Internet ha contribuido enormemente en el crecimiento de librerías digitales de música, y con ello, la información y metadatos disponibles de cada pista de audio. El poder emocional de la música es el motivo de su aplicación en áreas tan diversas como la industria del juego, la industria cinematográfica, marketing y musicoterapia, pero los conocimientos científicos sobre este fenómeno están lejos de ser completos o reveladores \cite{eerola2012review}.
 \newline
 La relación entre música y emoción ha sido objeto de muchos debates académicos e investigaciones empíricas en muchas disciplinas diferentes donde están incluidas la filosofía, la musicología, la psicología, la biología, la antropología y la sociología. Sin embargo, no fue hasta la década de los 2000, cuando el estudio de este tema desde el punto de vista de la ingeniería, comenzó a desarrollar un modelo computacional de emoción musical para la recuperación y organización de la música basada en emociones \cite{yang2011music}.
@@ -132,7 +169,7 @@ Aquí es donde entra en juego el Reconocimiento Musical de Emociones (Music Emot
 \newline
 En este trabajo blablablablabla..........
 
-\section{Objetivos del trabajo}
+\subsection{Objetivos del trabajo}
 El objetivo principal del trabajo es diseñar un sistema para el reconocimiento de emociones en pistas de audio.
 Los objetivos específicos que se plantean son los siguientes:
 \begin{itemize}
@@ -147,7 +184,7 @@ Los objetivos específicos que se plantean son los siguientes:
  	\end{itemize}
 \end{itemize}
 
-\section{Metodología y estructura de la memoria}
+\subsection{Metodología y estructura de la memoria}
 La memoria está compuesta por cuatro apartados:
 \begin{enumerate}
 	\item Una introducción de la memoria donde se expone el contexto y la motivación del trabajo.
@@ -165,14 +202,25 @@ La memoria está compuesta por cuatro apartados:
 	\item Los resultados detallados de los experimentos realizados en el capítulo anterior.
 	\item Las conclusiones obtenidas del trabajo, y líneas futuras en las que seguir profundizando en MER.
 \end{enumerate}
-\chapter{Estado del arte}
-\section{Music Emotion Recognition}
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%% - ESTADO DEL ARTE - %%%%%%%%%%%%%
+\newpage
+\section{Estado del arte}
+\subsection{Music Emotion Recognition}
 
 Music Emotion Recognition (MER) es un campo de estudio que se enfoca en identificar y clasificar las emociones que la música evoca en los oyentes. Para ello, se extraen las características relevantes de las pistas de audio, se procesan, se evalúan, y posteriormente se asocian con determinadas emociones \cite{GomezCanon2021SPM}.
 \newline
 MER es una de las disciplinas de alto nivel más desafiantes en Music Information Retrieval (MIR). MIR un campo de investigación que se centra en la extracción e inferencia de características significativas de la música (a partir de la señal de audio), la clasificación de la música utilizando estas características, y el desarrollo de diferentes esquemas de búsqueda y recuperación. Tiene como objetivo poner a disposición de los individuos el vasto almacén de música del mundo \cite{schedl2014music}
 
-\subsection{Emociones}
+\subsubsection{Emociones}
 
 Los modelos teóricos de la emoción adoptados por los estudios se dividieron en cuatro clases: discretos, dimensionales, misceláneos y específicos de la música \cite{eerola2012review}. 
 \newline
@@ -193,16 +241,65 @@ Un aspecto importante en MER es la categorización de las emociones según su na
 \end{itemize}
 \cite{yang2011music} expone un ejemplo claro para distinguir entre los dos tipos: el Cumpleaños Feliz. Si analizamos la canción por sus características, se podría decir que es una canción alegre (emoción percibida). Pero es posible que para algunas personas les produzca tristeza al asociar un recuerdo con esta canción (emoción inducida)
 
-\subsection{Estado actual MER}
+\subsubsection{Estado actual MER}
+El flujo de trabajo se divide en cuatro bloques \cite{GomezCanon2021SPM}:
 
-\subsection{Estado futuro MER}
+
+\paragraph{Taxonomía y propiedades musicales de la emoción}
+Es la forma en que se clasifican y categorizan las emociones. Hay dos taxonomías predominantes en el marco actual de MER:
+\begin{itemize}
+	\item Enfoque categórico/discreto presenta diferentes clases: feliz, triste, etc. Este enfoque tiene una resolución mala y resulta ambiguo
+	\item Enfoque dimensional. Como explica el apartado anterior, se conceptualiza la emoción como un elemento bidimensional (valencia y excitación). Este enfoque puede resultar más exacto que el anterior, pero también más complejo a la hora de mapear las emociones en el marco que propone Russell \cite{posner2005circumplex}
+\end{itemize}
+La elección de la taxonomía es la decisión más importante para diseñar un conjunto de datos, y define el nivel de precisión emocional.
+
+\paragraph{Creación del conjunto de datos y recopilación de anotaciones subjetivas}
+La forma más utilizada para la recopilación de emociones musicales es la subjetiva. Los anotadores suelen escuchar extractos de canciones (de unos 30 segundos) para posteriormente emitir juicios emocionales. Los datos son anotados siguiendo la taxonomía elegida para la creación del conjunto de datos. Estos anotadores son expertos en música, pero sin conocimiento alguno de teoría musical (musicólogos, productores, investigadores, etc.).
+\newline
+Todas las calificaciones son promediadas para llegar a una "verdad universal". Es decir, los valores finales son un promedio de las anotaciones de cada experto.
+
+\paragraph{Extracción de las características}
+En los conjuntos de datos se encuentran características de dos tipos: propiedades acústicas a bajo nivel y los niveles musicales a alto nivel. Estos dos tipos de características no tienen por qué estar relacionadas: las propiedades acústicas a bajo nivel se obtienen de la señal acústica de la canción, mientras que los niveles musicales a alto nivel están relacionados con la melodía, ritmo o el tono.
+\newline
+A esta diferencia de características se la denomina "brecha semántica". La tendencia actual está enfocada en trabajar para reducir esta brecha: se ha descubierto que el ritmo está relacionado con la estructura métrica y la duración de las notas, o que la dinámica de la canción está relacionada con el volumen, la energía media cuadrática o la intensidad de las notas.
 
 
-\section{Técnicas de Aprendizaje Máquina}
+Las herramientas más utilizadas para la extracción de características son:
+\begin{itemize}
+	\item MIRToolbox. Un conjunto de herramientas en Matlab.
+	\item OpenSMILE. Desarrollada en C++.
+	\item Essentia 4. Desarrollado en C++, posee clasificadores previamente entrenados.
+	\item PsySound. Librería para uso en Matlab basada en algoritmos psicoacústicos
+	\item Librosa. Biblioteca de código abierto para Python. Especializada en el análisis y procesamiento de audio y música. Es ampliamente utilizada en la comunidad de investigación en musicología, así como en aplicaciones prácticas que involucran el procesamiento y análisis de señales de audio en MIR.
+\end{itemize}
+
+\paragraph{Evaluación}
+La evaluación de los sistemas MER está directamente relacionada con la taxonomía de las emociones: la taxonomía elegida para trabajar en el sistema MER afecta a las características extraídas y los valores a predecir, y estos a su vez a la evaluación de los sistemas. Hay dos enfoques de sistema MER:
+\begin{itemize}
+	\item Sistema de clasificación si la taxonomía elegida sigue un enfoque categórico/discreto. Los parámetros de evaluación de estos sistemas son los mismos que en modelos de clasificación de otras disciplinas: precisión, f-score, precision, etc.
+	\item Sistema de regresión si el enfoque es dimensional/continuo. Los parámetros comúnmente usados para evaluar estos sistemas son: error cuadrático medio, coeficiente de determinación (R2) o coeficiente de correlación de Pearson ($\rho$).
+\end{itemize}
+
+
+
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{figs/mer_traditional_system}
+	\caption{Sistema tradicional MER}
+	\label{fig:mertraditionalsystem}
+\end{figure}
+
+
+\subsubsection{Estado futuro MER}
+
+
+\subsection{Técnicas de Aprendizaje Máquina}
 
 El aprendizaje máquina (Machine Learning) es la ciencia de programar ordenadores para que estos puedan aprender de los datos \cite{geron2022hands}. Se enfoca en la idea de que los ordenadores puedan "aprender" a partir de la experiencia y los datos: identifican patrones en los datos y predicen o deciden en función de esos patrones.
 
-\subsection{Tipos de Machine Learning}
+\subsubsection{Tipos de Machine Learning}
 Los tipos de Machine Learning se clasifican en diferentes categorías según su naturaleza \cite{geron2022hands}:
 \begin{itemize}
 	\item Grado de supervisión humana durante el entrenamiento. Dentro de esta categoría se encuentran los siguientes sistemas:
@@ -222,7 +319,7 @@ Los tipos de Machine Learning se clasifican en diferentes categorías según su 
 		\item basados en modelos
 	\end{itemize}
 \end{itemize}
-Estos criterios no son exclusivos. Pueden combinarse de la forma que se quiera
+Estos criterios no son exclusivos. Pueden combinarse de la forma que se quiera.
 
 \subsubsection{Sistemas supervisados vs. no supervisados}
 Los sistemas supervisados de Machine Learning son algoritmos que utilizan datos etiquetados (etiquetas) durante la fase de entrenamiento del sistema. Son utilizados tanto para modelos de clasificación como para modelos de regresión (predicción de un número dado un paquete de características). Algunos de los algoritmos supervisados más importantes son:
@@ -271,7 +368,7 @@ ellos). Es decir, utiliza una medida de similitud. Estos sistemas tiene un buen 
 \newline
 Aquí es donde se encuentran los sistemas basados en modelos, cuya forma de generalizar es a partir de modelos que hagan predicciones. Estos sistemas tienen mucho mejor rendimiento frente a instancias de datos muy ruidosas (gran cantidad de datos aleatorios). Para conseguir buenos resultados con estos sistemas se deben seguir algunos pasos como: selección del modelo (elegir el mejor modelo que se adapte a nuestro sistema), ajuste del modelo (elección correcta de los parámetro o hiperparámetros),  o entrenamiento el modelo.
 
-\section{Modelos de Regresión}
+\subsection{Modelos de Regresión}
 Los modelos de Regresión son técnicas que se utilizan para predecir un valor numérico continuo basado en una o más variables independientes. Para ello, se modela el efecto de un conjunto de variables explicativas sobre una varibale de interés primario \autocite{fahrmeir2013regression}.
 \newline
 Los conceptos fundamentales de los modelos de Regresión son:
@@ -285,12 +382,58 @@ Una característica principal de los modelos de regresión es que la relación e
 	$y = $
 	E($y|x_1, ..., x_k$) = $f(x_1, ..., x_k) + \epsilon $
 \end{center}
-\subsection{Árbol de regresión}
 
 
-\chapter{Experimentos}
+\subsubsection{Regresión Lineal}
+
+La regresión lineal es uno de los métodos más básicos y  utilizados de regresión. Aquí tienes una definición más detallada. Como se explica en el apartado anterior, en regresión existe una relación entre la variable objetivo y las variables independientes a través de la función $f(x1, ..., xk)$. Esta función no es exacta al estar afectada por el ruido $\epsilon$. El objetivo es estimar función desconocida $f$, es decir, separar el componente sistemático de $f$ del ruido aleatorio $\epsilon$, asumiendo en este caso un acercamiento lineal \cite{fahrmeir2013regression}. La ecuación resultante es la siguiente:
+\begin{center}
+	$y_i = $
+	$\beta_0 + \beta_1x_i, ..., \beta_kx_i + \epsilon_i = $
+	$ x'_i\beta + \epsilon $
+\end{center}
+ 
+Donde los parámetros $\beta_0, \beta_1, ..., \beta_k$ son desconocidos y deben ser estimados. El parámetro $\beta_0$ respresenta la intersección (cuando el valor de $x$ es 0).
+\newline
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{figs/linear_regression}
+	\caption{Regresión Lineal}
+	\label{fig:linearregression}
+\end{figure}
+
+
+El objetivo de la regresión lineal es encontrar la mejor línea recta que minimiza la suma de los errores cuadrados (diferencias entre los valores reales y los valores predichos).
+
+
+\subsubsection{Árboles de decisión}
+Los árboles de decisión son una técnica de Machine Learning y estadística utilizada tanto para casos de clasificación como para casos regresión. Son modelos predictivos que representan decisiones y sus posibles consecuencias, incluidas las probabilidades de diferentes resultados. Son conceptualmente simples, pero poderosos
+\newline
+El principio de los árboles de regresión es segmentar el espacio características en una serie de regiones simples. El conjunto de reglas de división utilizadas para segmentar el espacio se pueden resumir en un árbol, de ahí el término \cite{gareth2013introduction}.
+\newline
+En el libro \cite{hastie2009elements} se explican los modelos de decisión con un ejemplo simple: imaginemos un problema de regresión con una respuesta continua $Y$ y los inputs $X_1$ y $X_2$. Primero se divide el espacio en dos regiones. Se elige la variable y el punto de divisón para lograr el mejor ajuste. Luego, una o ambas regiones se dividen en dos regiones más. Continúa el proceso hasta que se aplica alguna regla de detención.
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{figs/decission_tree}
+	\caption{Funcionamiento de un árbol de decisión}
+	\label{fig:decissiontree}
+\end{figure}
+
+
+Los métodos basados en árboles de decisión son simples, y útiles para la interpretación. Sin embargo, normalmente no son competitivos con los mejores enfoques de aprendizaje supervisado en términos de predicción \cite{gareth2013introduction}.
+
+
+
+
+
+
+%%%%%%%%%%%%%% - EXPERIMENTOS - %%%%%%%%%%%%%
+\newpage
+\section{Experimentos}
 En este capítulo se describe el proceso del desarrollo de la aplicación MER. Primeramente se describen el conjunto de datos utilizado en el experimento. Seguidamente se describe cómo han sido manipulados los datos para que sean utilizados por el sistema. Por último, se describen las técnicas de Machine Learning utilizadas en la aplicación.
-\section{Conjunto de datos}
+\subsection{Conjunto de datos}
 El conjunto de datos elegido para el experimento es DEAM dataset - The MediaEval Database for Emotional Analysis of Music \cite{AlajankiEmoInMusicAnalysis}. El conjunto de datos DEAM consta de 1802 extractos y canciones libres de derechos que provienen de varias fuentes: freemusicarchive.org (FMA), jamendo.com,
 y el conjunto de datos medleyDB.
 \newline
@@ -332,15 +475,38 @@ En el conjunto de datos están presentes todas estas anotaciones, junto con los 
 \subsubsection{Metadatos}
 En el conjunto de datos de DEAM \cite{AlajankiEmoInMusicAnalysis} también hay información acerca de las canciones: título de la canción, artista, álbum, géneros musicales y etiquetas
 
-\section{Desarrollo}
-\subsection{Extracción y manipulación de los datos}
-\subsection{modelo ML1}
-\subsection{modelo ML2}
-\chapter{Resultados}
-\chapter{Conclusiones}
+\subsection{Desarrollo}
+\subsubsection{Extracción y manipulación de los datos}
+\subsubsection{modelo ML1}
+\subsubsection{modelo ML2}
 
-%%%%%BIBLIOGRAFÍA%%%%%%%%%%%%%%%
-\chapter{Bibliografía}
+
+
+
+%%%%%%%%%%%%%% - RESULTADOS - %%%%%%%%%%%%%
+\newpage
+\section{Resultados}
+
+
+
+
+
+
+
+%%%%%%%%%%%%%% - CONCLUSIONES - %%%%%%%%%%%%%
+\newpage
+\section{Conclusiones}
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%% - BIBLIOGRAFÍA - %%%%%%%%%%%%%
+\newpage
+\section{Bibliografía}
 \printbibliography
 
 \end{document}
