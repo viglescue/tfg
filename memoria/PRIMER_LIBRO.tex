@@ -16,7 +16,7 @@
 	\null
 	\thispagestyle{empty}%
 	\newpage}
-%\usepackage{hyperref}
+\usepackage{hyperref}
 \usepackage{afterpage}
 \setlength{\parskip}{8mm} %Separación entre parrafos 
 \usepackage{multirow, array} % para las tablas
@@ -220,13 +220,13 @@ Music Emotion Recognition (MER) es un campo de estudio que se enfoca en identifi
 \newline
 MER es una de las disciplinas de alto nivel más desafiantes en Music Information Retrieval (MIR). MIR un campo de investigación que se centra en la extracción e inferencia de características significativas de la música (a partir de la señal de audio), la clasificación de la música utilizando estas características, y el desarrollo de diferentes esquemas de búsqueda y recuperación. Tiene como objetivo poner a disposición de los individuos el vasto almacén de música del mundo \cite{schedl2014music}
 
-\subsubsection{Emociones}
+\subsubsection{Emociones}\label{emo}
 
 Los modelos teóricos de la emoción adoptados por los estudios se dividieron en cuatro clases: discretos, dimensionales, misceláneos y específicos de la música \cite{eerola2012review}. 
 \newline
 Uno de los más comunes usado en psicología es el modelo dimensional propuesto por Russell \cite{posner2005circumplex}. El modelo consiste en la representación de las emociones a través de dos dimensiones: valencia ( nivel de agrado o desagrado) y excitación (representa el nivel de energia o activación de la valencia). Cada emoción es una representación linea de la combinación de estas dos dimensiones
 
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\linewidth]{figs/russell}
 	\caption{Modelo dimensional de Russell}
@@ -245,7 +245,7 @@ Un aspecto importante en MER es la categorización de las emociones según su na
 El flujo de trabajo se divide en cuatro bloques \cite{GomezCanon2021SPM}:
 
 
-\paragraph{Taxonomía y propiedades musicales de la emoción}
+\paragraph{Taxonomía y propiedades musicales de la emoción}\label{tax_emo}
 Es la forma en que se clasifican y categorizan las emociones. Hay dos taxonomías predominantes en el marco actual de MER:
 \begin{itemize}
 	\item Enfoque categórico/discreto presenta diferentes clases: feliz, triste, etc. Este enfoque tiene una resolución mala y resulta ambiguo
@@ -293,11 +293,22 @@ La evaluación de los sistemas MER está directamente relacionada con la taxonom
 
 
 \subsubsection{Estado futuro MER}
+En el libro \citetitle{yang2011music} se presentan varias vías de trabajo donde MER puede profundizar:
 
+\paragraph{Timbre vocal}
+Actualmente, en el análisis emocional de una canción, MER pone el foco en la música y en las letras. Sin embargo, la voz contiene muchos matices que pueden resultar  especialmente valiosos en los modelos de predicción. Los timbres de voz (alegre, rasgado, agudo, agresivo, etc.) afectan a la percepción que tiene el oyente de la canción.
+\newline
+Existen distintas formas de estudiar el timbre vocal basadas en el estudio de la señal acústica de la voz y la extracción de descriptores (pitch, energía, coficientes cepstrum, ...).
+
+\paragraph{Factores de situación}
+En el apartado ~\ref{emo} donde se describen las emociones, se hace referencia a las emociones inducidas. La situación del oyente (momento del día, si está acompañado o solo, etc) afecta directamente a las emociones inducidas. El estudio de la situación puede ser de ayuda para dar contexto acerca del entorno que tiene el oyente, y modificar (o no) la predicción de emociones.
+
+\paragraph{Conexión entre enfoques dimensional y categórico}
+Como se describe en el apartado ~\ref{tax_emo} hay dos enfoques bien diferenciados en el estudio de MER: dimensional/continuo y categórico/discreto. una combinación de los dos enfoques puede resultar eficaz
 
 \subsection{Técnicas de Aprendizaje Máquina}
 
-El aprendizaje máquina (Machine Learning) es la ciencia de programar ordenadores para que estos puedan aprender de los datos \cite{geron2022hands}. Se enfoca en la idea de que los ordenadores puedan "aprender" a partir de la experiencia y los datos: identifican patrones en los datos y predicen o deciden en función de esos patrones.
+El aprendizaje máquina (Machine Learning) es la ciencia de programar ordenadores para que estos puedan aprender de los datos \cite{geron2022hands}. Se enfoca en la idea de que los ordenadores puedan "aprender" a partir de la experiencia y los datos: identifican patrones en los datos y predicen o deciden en función de esos patrones. La idea es partir del sistema de etiquetado de emociones (enfoque categórico) y encontrar su lugar en el espacio valencia-activación que propone el enfoque dimensional. Esto ayudaría a la creación de conjuntos de datos desde el punto de vista del oyente: es más fácil identificar una emoción que situarla dentro del espacio valencia-activación 
 
 \subsubsection{Tipos de Machine Learning}
 Los tipos de Machine Learning se clasifican en diferentes categorías según su naturaleza \cite{geron2022hands}:
@@ -424,8 +435,8 @@ En el libro \cite{hastie2009elements} se explican los modelos de decisión con u
 
 Los métodos basados en árboles de decisión son simples, y útiles para la interpretación. Sin embargo, normalmente no son competitivos con los mejores enfoques de aprendizaje supervisado en términos de predicción \cite{gareth2013introduction}.
 
-
-
+\subsubsection{RIDGE}
+\subsubsection{Bosques aleatorios}
 
 
 
@@ -477,8 +488,15 @@ En el conjunto de datos de DEAM \cite{AlajankiEmoInMusicAnalysis} también hay i
 
 \subsection{Desarrollo}
 \subsubsection{Extracción y manipulación de los datos}
-\subsubsection{modelo ML1}
-\subsubsection{modelo ML2}
+
+
+
+
+
+\subsubsection{Regresión Lineal}
+\subsubsection{Árbol de regresión}
+\subsubsection{RIDGE}
+\subsubsection{Bosques aleatorios}
 
 
 
