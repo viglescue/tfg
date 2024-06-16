@@ -479,6 +479,8 @@ Los métodos basados en árboles de decisión son simples, y útiles para la int
 \newpage
 \section{Experimentos}
 En este capítulo se describe el proceso del desarrollo de la aplicación MER. Primeramente se describen el conjunto de datos utilizado en el experimento. Seguidamente se describe cómo han sido manipulados los datos para que sean utilizados por el sistema. Por último, se describen las técnicas de Machine Learning utilizadas en la aplicación.
+
+
 \subsection{Conjunto de datos}
 El conjunto de datos elegido para el experimento es DEAM dataset - The MediaEval Database for Emotional Analysis of Music \cite{AlajankiEmoInMusicAnalysis}. El conjunto de datos DEAM consta de 1802 extractos y canciones libres de derechos que provienen de varias fuentes: freemusicarchive.org (FMA), jamendo.com,
 y el conjunto de datos medleyDB.
@@ -522,9 +524,47 @@ En el conjunto de datos están presentes todas estas anotaciones, junto con los 
 En el conjunto de datos de DEAM \cite{AlajankiEmoInMusicAnalysis} también hay información acerca de las canciones: título de la canción, artista, álbum, géneros musicales y etiquetas
 
 \subsection{Desarrollo}
+En este apartado se describen los pasos a seguir en el desarrollo del sistema MER. El sistema está compuesto, en primer lugar, por un procesado de datos: se toman los archivos proporcionados por el conjunto de datos y se manipulan para crear las variables de las que están formados los modelos.
+\newline
+Para la predicción de emociones, se han elegido los siguientes algoritmos de Machine Learning:
+\begin{itemize}
+	\item Árbol de decisión
+	\item Bosques aleatorios
+	\item Regresión lineal
+	\item Regresión LASSO
+\end{itemize}
+En los siguientes apartados se procede a explicar cómo se han diseñado los modelos utilizados para cada uno de los algoritmos.
+\newline
+La taxonomía de emociones elegida para este experimento es la continua/dimensional (ver apartado ~\ref{tax_emo}). Las emociones están representadas por dos valores: valencia y activación. O visto desde el punto de vista de Machine Learning, hay dos variables objetivo. Para diseñar un sistema MER siguiendo esta taxonomía, es necesario el desarrollo de dos modelos de predicción diferentes para cada algoritmo (uno para valencia y otro para activación).
+\newline
+Tanto la memoria como el código están disponibles en este repositorio Github \url{https://github.com/viglescue/tfg}. El código fuente de la aplicación MER está dividido en dos archivos: \textit{data-recap.ipynb} con todo el desarrollo correspondiente al procesamiento de datos y archivos del conjunto de datos, y \textit{MER-ML-models.ipynb} con el desarrollo de los diferentes algoritmos para la predicción de emociones. El experimento al completo está desarrollado en lenguaje Python, utilizando cuadernos Jupyter en el entorno de Anaconda. 
+
+
+
+
+
+
+
 \subsubsection{Extracción y manipulación de los datos}
+El conjunto de datos de DEAM \cite{AlajankiEmoInMusicAnalysis} organiza los datos de la siguiente forma:
+\begin{itemize}
+	\item Documentos CSV (uno por cada pista de audio) donde se encuentran los valores de las características de cada canción. En cada documento CSV aparece el valor de cada característica en intervalos de 500ms.
+	\item Un archivo CSV con los valores de media y desviación para valencia y activación.
+\end{itemize}
+La idea es recopilar todos los datos en una tabla para manipularlos mejor. Para ello se ha empleado la librería Pandas \cite{mckinney-proc-scipy-2010} para su uso en lenguage Python.
+\newline
+Para empezar a construir la tabla, primeramente, se han obtienen los nombres de las características a partir  uno de los archivos CSV que las contienen. Dado que los valores de características están disponibles por intervalos de ms, se ha calculado la media de los valores de cada característica (por cada pista de audio) con el fin de obtener un solo valor por característica y canción. Estos valores serán las variables independientes que se usarán posteriormente en los modelos de ML.
+\newline
+De otro archivo, se han recopilado los valores de media y activación de cada pista de audio. Estos serán las variables independientes (o variables objetivo) de los modelos.
+\newline
+El resultado ha sido el documento \textit{recap-data.csv}, el cual contiene todas las variables necesarias para construir los sistemas MER a partir de los diferentes modelos de ML.
 
-
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{figs/data}
+	\caption{Recopilación de datos}
+	\label{fig:data}
+\end{figure}
 
 
 
