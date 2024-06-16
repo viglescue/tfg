@@ -153,7 +153,6 @@ Esto es un resumen
 
 
 
-
 %%%%%%%%%%%%%% - INTRODUCCIÓN- %%%%%%%%%%%%%
 \newpage
 %\pagenumbering{arabic} % para empezar la numeración con números
@@ -389,20 +388,47 @@ Los conceptos fundamentales de los modelos de Regresión son:
 	\item Tipo de modelo: dependerá principalmente del tipo de variable respuesta, y del tipo de variables independientes
 \end{itemize}
 Una característica principal de los modelos de regresión es que la relación entre la variable independiente y las variables independientes no es una función determinista, si no que muestra errores. Esto implica que la respuesta \textit{y} es una variable aleatoria, cuya distribución depende de las variables independientes. Un ejemplo claro sería: sabiendo la altura de los padres no se puede predecir exactamente la altura de los hijos, solo estimar una media y el grado de dispersión. A esta desviación del valor esperado se la denomina $\epsilon$ (componente aleatorio o estocástico) (por eso es muy importante estudiar la importancia de las covariables en el valor medio de la variable objetivo). La función resultante es un modelo condicional donde los valores de \textit{y} (variable objetivo) están condicionados por las covariables ($x_1, x_2, x3, ...$) y el componente aleatorio $\epsilon$:
-\begin{center}
-	$y = $
-	E($y|x_1, ..., x_k$) = $f(x_1, ..., x_k) + \epsilon $
-\end{center}
+
+\begin{equation}
+	y = E(y|x_1, ..., x_k) = f(x_1, ..., x_k) + \epsilon 
+\end{equation}
+
+
+\subsubsection{Árboles de decisión}\label{decision_tree}
+Los árboles de decisión son una técnica de Machine Learning y estadística utilizada tanto para casos de clasificación como para casos regresión. Son modelos predictivos que representan decisiones y sus posibles consecuencias, incluidas las probabilidades de diferentes resultados. Son conceptualmente simples, pero poderosos
+\newline
+El principio de los árboles de regresión es segmentar el espacio características en una serie de regiones simples. El conjunto de reglas de división utilizadas para segmentar el espacio se pueden resumir en un árbol, de ahí el término \cite{gareth2013introduction}.
+\newline
+En el libro \citetitle{hastie2009elements} se explican los modelos de decisión con un ejemplo simple: imaginemos un problema de regresión con una respuesta continua $Y$ y los inputs $X_1$ y $X_2$. Primero se divide el espacio en dos regiones. Se elige la variable y el punto de divisón para lograr el mejor ajuste. Luego, una o ambas regiones se dividen en dos regiones más. Continúa el proceso hasta que se aplica alguna regla de detención.
+
+
+
+\subsubsection{Bosques aleatorios}
+Los árboles aleatorios (random forests) son un método de aprendizaje para clasificación y regresión que consiste en construir una multitud de árboles de decisión (ver ~\ref{decision_tree}) en la etapa de entrenamiento, y así obtener el modo de las clases (clasificación) o la media de las predicciones (regresión) de los árboles individuales.
+\newline
+La idea de los bosques aleatorios es reducir la varianza del sistema, reduciendo la correlación entre los árboles (sin incrementar en exceso la varianza). Esto es posible gracias a una selección aleatoria de variables independientes durante el proceso de crecimiento de los árboles \cite{hastie2009elements}.
+\newline
+La forma en que se construye los bosques aleatorios es la siguiente:
+\begin{enumerate}
+	\item Se elige el número $B$ de árboles de decisión que formará el bosque
+	\item Se hace crecer los árboles del bosque repitiendo de forma recursiva los siguientes pasos
+	\begin{enumerate}
+		\item Del conjunto de datos de entrenamiento, se elige un subconjunto aleatorio de las características (generalmente $\sqrt{\rho}$ variables si hay $\rho$ en total).
+		\item De este subconjunto, se elige la mejor variable .
+		\item Se dividen los nodos en dos nodos hijos.
+	\end{enumerate}
+	\item Se obtienen los datos del conjunto de árboles.
+	\item Se hace la predicción.
+\end{enumerate}
 
 
 \subsubsection{Regresión Lineal}
-
 La regresión lineal es uno de los métodos más básicos y  utilizados de regresión. Aquí tienes una definición más detallada. Como se explica en el apartado anterior, en regresión existe una relación entre la variable objetivo y las variables independientes a través de la función $f(x1, ..., xk)$. Esta función no es exacta al estar afectada por el ruido $\epsilon$. El objetivo es estimar función desconocida $f$, es decir, separar el componente sistemático de $f$ del ruido aleatorio $\epsilon$, asumiendo en este caso un acercamiento lineal \cite{fahrmeir2013regression}. La ecuación resultante es la siguiente:
-\begin{center}
-	$y_i = $
-	$\beta_0 + \beta_1x_i, ..., \beta_kx_i + \epsilon_i = $
-	$ x'_i\beta + \epsilon $
-\end{center}
+\begin{equation}
+	y_i = 
+	\beta_0 + \beta_1x_i, ..., \beta_kx_i + \epsilon_i = 
+	 x'_i\beta + \epsilon 
+\end{equation}
  
 Donde los parámetros $\beta_0, \beta_1, ..., \beta_k$ son desconocidos y deben ser estimados. El parámetro $\beta_0$ respresenta la intersección (cuando el valor de $x$ es 0).
 \newline
@@ -412,17 +438,25 @@ Donde los parámetros $\beta_0, \beta_1, ..., \beta_k$ son desconocidos y deben 
 	\caption{Regresión Lineal}
 	\label{fig:linearregression}
 \end{figure}
-
-
 El objetivo de la regresión lineal es encontrar la mejor línea recta que minimiza la suma de los errores cuadrados (diferencias entre los valores reales y los valores predichos).
 
+\subsubsection{Ridge}
+La regresión ridge es una variante de la regresión lineal estándar. Modifica la estimación de los coeficientes del modelo para mejorar la precisión: introduce una penalización que reduce los coeficientes de las variables independientes. Para lograr esta penalización se agrega un término de regulación que es proporcional a la suma de los cuadrados de los coeficientes. La fórmula de la regresión ridge es la siguiente \cite{hastie2009elements}:
+\begin{equation}
+	\hat{\beta}^{ridge} = argmin {\sum_{i=1}^{N}} (y_i - \beta_0 - \sum_{j=1}^{p}x_{ij}\beta^{2}_j)
+\end{equation}
+\newline
+Donde:
+\begin{itemize}
+	\item $\hat{\beta}^{ridge}$ es el término de regularización ridge
+	\item $y_i$ es la variable respuesta para la observación $i$
+	\item $x_{ij}$ es el valor de la variable independiente $j$ para la observación $i$
+	\item $\beta_{j}$ son los coeficientes del modelo
+\end{itemize}
 
-\subsubsection{Árboles de decisión}
-Los árboles de decisión son una técnica de Machine Learning y estadística utilizada tanto para casos de clasificación como para casos regresión. Son modelos predictivos que representan decisiones y sus posibles consecuencias, incluidas las probabilidades de diferentes resultados. Son conceptualmente simples, pero poderosos
-\newline
-El principio de los árboles de regresión es segmentar el espacio características en una serie de regiones simples. El conjunto de reglas de división utilizadas para segmentar el espacio se pueden resumir en un árbol, de ahí el término \cite{gareth2013introduction}.
-\newline
-En el libro \cite{hastie2009elements} se explican los modelos de decisión con un ejemplo simple: imaginemos un problema de regresión con una respuesta continua $Y$ y los inputs $X_1$ y $X_2$. Primero se divide el espacio en dos regiones. Se elige la variable y el punto de divisón para lograr el mejor ajuste. Luego, una o ambas regiones se dividen en dos regiones más. Continúa el proceso hasta que se aplica alguna regla de detención.
+La regresión ridge se utiliza cuando hay muchas variables independientes y se quiere mejorar la precisión del modelo lineal: los coeficientes puede estar mal determinados y mostrar una varianza muy alta. Al imponer una restricción de tamaño de los coeficientes se soluciona este problema \cite{fahrmeir2013regression}.
+
+
 
 
 \begin{figure}[H]
@@ -435,8 +469,9 @@ En el libro \cite{hastie2009elements} se explican los modelos de decisión con u
 
 Los métodos basados en árboles de decisión son simples, y útiles para la interpretación. Sin embargo, normalmente no son competitivos con los mejores enfoques de aprendizaje supervisado en términos de predicción \cite{gareth2013introduction}.
 
-\subsubsection{RIDGE}
-\subsubsection{Bosques aleatorios}
+
+
+
 
 
 
