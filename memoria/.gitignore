@@ -1,3 +1,13 @@
-TFG_MER*
-!TFG_MER-viglesiasc.tex
+*.log
+*.bbl
+*.bcf
+*.blg
+*.log
+*.lof
+*.out
+*.lot
+*.gz
+*.xml
+*.toc
+*.aux
 .DS_Store
