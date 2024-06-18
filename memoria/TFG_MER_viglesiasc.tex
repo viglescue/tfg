@@ -37,6 +37,7 @@
 {\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
 \titlespacing*{\paragraph}
 {0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+\usepackage{tabularx}
 
 
 
@@ -684,14 +685,14 @@ La validación cruzada da como resultado la siguiente combinación de hiperpará
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=0.5\linewidth]{figs/final_params_tree}
-		\caption{Hiperparámetros del el árbol de decisión para la predicción de valencia}
+		\caption{Hiperparámetros del árbol de decisión para la predicción de valencia}
 		\label{fig:finalparamstree}
 	\end{figure}
 	\item Para activación:
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=0.5\linewidth]{figs/final_params_tree_arousal}
-		\caption{Hiperparámetros del el árbol de decisión para la predicción de activación}
+		\caption{Hiperparámetros del árbol de decisión para la predicción de activación}
 		\label{fig:finalparamstreearousal}
 	\end{figure}
 \end{itemize}
@@ -709,7 +710,19 @@ Uno de los parámetro de entrada de \textit{GridSearchCV} es \textit{param\_grid
 La validación cruzada dará como resultado la combinación de parámetros de entrada donde la función \textit{DecisionTreeRegressor} tenga una mayor precisión (\textit{score}). Los hipermetamorfosis elegidos por la validación cruzada son:
 \begin{itemize}
 	\item Para valencia:
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.7\linewidth]{figs/final_params_random_forest_valence}
+		\caption{Hiperparámetros del bosque aleatorio para la predicción de valencia}
+		\label{fig:finalparamsrandomforestvalence}
+	\end{figure}
 	\item Para activación:
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.7\linewidth]{figs/final_params_random_forest_arousal}
+		\caption{Hiperparámetros del bosque aleatorio para la predicción de activación}
+		\label{fig:finalparamsrandomforestarousal}
+	\end{figure}
 \end{itemize}
 Una vez obtenidos los hiperparámetros se construye el algoritmo de bosque aleatorio. Posteriormente, se entrena el modelo con las variables de entrenamiento (\textit{X\_train\_val} y \textit{y\_train\_val} para valencia, y \textit{X\_train\_ar} y \textit{y\_train\_ar} para activación).
 \newline
@@ -765,10 +778,17 @@ La validación cruzada dará como resultado la combinación de parámetros de en
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=0.5\linewidth]{figs/final_params_ridge_valence}
-		\caption{}
+		\caption{Hiperparámetros de la regresión \textit{ridge} para la predicción de valencia}
 		\label{fig:finalparamsridgevalence}
 	\end{figure}
 	\item Para activación:
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.7\linewidth]{figs/final_params_ridge_arousal}
+		\caption{Hiperparámetros de la regresión \textit{ridge} para la predicción de activación}
+		\label{fig:finalparamsridgearousal}
+	\end{figure}
+	
 \end{itemize}
 Una vez obtenidos los hiperparámetros se construye el algoritmo de regresión ridge. Después se entrena el modelo con las variables de entrenamiento (\textit{X\_train\_val} y \textit{y\_train\_val} para valencia, y \textit{X\_train\_ar} y \textit{y\_train\_ar} para activación).
 \newline
@@ -789,8 +809,7 @@ En este experimento se presentan algoritmos de regresión de Machine Learning. L
 \begin{itemize}
 	\item Mean absolute error (MAE)
 	\item Mean squared error (MSE)
-	\item R2 Score
-	\item Mean squared log error (MSLE)
+	\item Coeficiente de determinación (R2 \textit{Score})
 	\item Mean absolute percentage error (MAPE)
 \end{itemize}
 Para el obtener estas métricas se ha utilizado la librería de \textit{scikit-learn} de Python, y las funciones correspondientes para cada caso.
@@ -803,14 +822,183 @@ donde
 \begin{itemize}
 	\item $n$ es el número de observaciones,
 	\item $y_i$ es el valor real de la observación,
-	\item $x_i$ es el valor predictivo
+	\item $x_i$ es el valor predictivo.
+\end{itemize}
+Los resultados obtenidos durante el experimento son:
+\begin{itemize}
+	\item Para valencia:
+	\begin{table}[H]
+		\centering
+		\caption{MAE de valencia}
+		\begin{tabular}{|c|c|}
+			\hline
+			\textbf{Algoritmo} & \textbf{MAE} \\
+			\hline
+			Árbol de decisión & 0.811 \\
+			Bosque aleatorio & 0.680 \\
+			Regresión Lineal & 0.649 \\
+			Regresión \textit{ridge} & 0.696 \\
+			\hline
+		\end{tabular}
+	\end{table}
+	\item Para activación:
+	\begin{table}[H]
+		\centering
+		\caption{MAE de activación}
+		\begin{tabular}{|c|c|}
+			\hline
+			\textbf{Algoritmo} & \textbf{MAE} \\
+			\hline
+			Árbol de decisión & 0.842 \\
+			Bosque aleatorio & 0.718 \\
+			Regresión Lineal & 0.795 \\
+			Regresión \textit{ridge} & 0.852 \\
+			\hline
+		\end{tabular}
+	\end{table}
 \end{itemize}
 
 \subsection{Mean squared error (MSE)}
+El \textit{Mean squared error} (o error cuadrado medio) es similar al MAE, con la diferencia de que mi el promedio de los errores al cuadrado. La fórmula de MAE es \cite{eswiki:159951880}:
+\begin{equation}
+	MSE = \frac{1}{N} \sum_{i=1}^{N} (y_i - x_i|)²
+\end{equation}
+donde
+\begin{itemize}
+	\item $n$ es el número de observaciones,
+	\item $y_i$ es el valor real de la observación,
+	\item $x_i$ es el valor predictivo.
+\end{itemize}
+Los resultados obtenidos durante el experimento son:
+\begin{itemize}
+	\item Para valencia:
+	\begin{table}[H]
+		\centering
+		\caption{MSE de activación}
+		\begin{tabular}{|c|c|}
+			\hline
+			\textbf{Algoritmo} & \textbf{MSE} \\
+			\hline
+			Árbol de decisión & 0.904 \\
+			Bosque aleatorio & 0.688 \\
+			Regresión Lineal & 0.646 \\
+			Regresión \textit{ridge} & 0.708 \\
+			\hline
+		\end{tabular}
+	\end{table}
+	\item Para activación:
+	\begin{table}[H]
+		\centering
+		\caption{MSE de activación}
+		\begin{tabular}{|c|c|}
+			\hline
+			\textbf{Algoritmo} & \textbf{MSE} \\
+			\hline
+			Árbol de decisión & 1.035 \\
+			Bosque aleatorio & 0.806 \\
+			Regresión Lineal & 0.946 \\
+			Regresión \textit{ridge} & 1.094 \\
+			\hline
+		\end{tabular}
+	\end{table}
+\end{itemize}
 
-\subsection{R2 Score}
-\subsection{Mean squared log error (MSLE)}
+\subsection{Coeficiente de determinación (R2 \textit{Score})}
+El coeficiente de determinación (R2 \textit{Score}) mide la varianza en la variable dependiente a  partir de las variables independientes. Su fórmula es \cite{eswiki:158364923}:
+\begin{equation}
+	R2 = 1 - \frac{\sigma^{2}_r}{\sigma^{2}_y} 
+\end{equation}
+donde
+\begin{itemize}
+	\item $\sigma^{2}_r$ es la varianza de la variable residual (diferencia entre lo real y lo predicho),
+	\item $\sigma^{2}_y$ es la varianza de la variable independiente.
+\end{itemize}
+\begin{itemize}
+	\item Para valencia:
+	\begin{table}[H]
+		\centering
+		\caption{Coeficiente R2 para valencia}
+		\begin{tabular}{|c|c|}
+			\hline
+			\textbf{Algoritmo} & \textbf{R2} \\
+			\hline
+			Árbol de decisión & 0.303 \\
+			Bosque aleatorio & 0.469 \\
+			Regresión Lineal & 0.502 \\
+			Regresión \textit{ridge} & 0.454 \\
+			\hline
+		\end{tabular}
+	\end{table}
+	\item Para activación:
+	\begin{table}[H]
+		\centering
+		\caption{Coeficiente R2 para activación}
+		\begin{tabular}{|c|c|}
+			\hline
+			\textbf{Algoritmo} & \textbf{R2} \\
+			\hline
+			Árbol de decisión & 0.363 \\
+			Bosque aleatorio & 0.504 \\
+			Regresión Lineal & 0.417 \\
+			Regresión \textit{ridge} & 0.326 \\
+			\hline
+		\end{tabular}
+	\end{table}
+\end{itemize}
+
 \subsection{Mean absolute percentage error (MAPE)}
+El error porcentual absoluto medio (\textit{Mean absolute percentage error}) mide precisión de la predicción como una proporción entre el valor real y valor a predecir. Su fórmula es \cite{enwiki:1225070385}:
+\begin{equation}
+	MAPE = 100 \frac{1}{n} \sum_{t=1}^{n} |\frac{A_t - F_t}{A_T} 
+\end{equation}
+donde
+\begin{itemize}
+	\item $A_t$ es el valor real,
+	\item $F_t$ es el valor predicho.
+\end{itemize}
+Los resultados obtenidos son:
+\begin{itemize}
+	\item Para valencia:
+	\begin{table}[H]
+		\centering
+		\caption{MAPE de valencia}
+		\begin{tabular}{|c|c|}
+			\hline
+			\textbf{Algoritmo} & \textbf{MAPE} \\
+			\hline
+			Árbol de decisión & 0.170 \\
+			Bosque aleatorio & 0.143 \\
+			Regresión Lineal & 0.137 \\
+			Regresión \textit{ridge} & 0.149 \\
+			\hline
+		\end{tabular}
+	\end{table}
+	\item Para activación:
+	\begin{table}[H]
+		\centering
+		\caption{MAPE de activación}
+		\begin{tabular}{|c|c|}
+			\hline
+			\textbf{Algoritmo} & \textbf{MAPE} \\
+			\hline
+			Árbol de decisión & 0.181 \\
+			Bosque aleatorio & 0.160 \\
+			Regresión Lineal & 0.174 \\
+			Regresión \textit{ridge} & 0.186 \\
+			\hline
+		\end{tabular}
+	\end{table}
+\end{itemize}
+
+
+
+
+
+
+
+
+
+
 
 %%%%%%%%%%%%%% - CONCLUSIONES - %%%%%%%%%%%%%
 \newpage
