@@ -113,9 +113,15 @@ aquí van los agradecimientos
 \newpage
 \section*{Resumen}
 \addcontentsline{toc}{section}{Resumen} % si queremos que aparezca en e
-Esto es un resumen
+Este trabajo de fin de grado tiene como objetivo desarrollar una aplicación de reconocimiento de emociones en la música (\textit{Music Emotion Recognition, MER}) utilizando técnicas de aprendizaje automático (\textit{Machine Learning}). La aplicación está diseñada para predecir las emociones musicales a través de las cataerísticas (acústicas) de la canción.
+
+Para ello, se implementaron varias técnicas de aprendizaje automático, incluyendo árboles de decisión, bosques aleatorios y regresión lineal. Con el fin de hacer más precisos los algoritmos, se ha implementado una técnica de validación cruzada para elegir los hiperparámetros de los modelos. Para entrenar y probar los algoritmos, se han extraído de un banco de datos las características y las emociones de cada canción.
 
 
+RESULTADOS....
+
+
+CONCLUSIONES....
 
 
 
@@ -165,9 +171,9 @@ La relación entre música y emoción ha sido objeto de muchos debates académic
 \newline
 Tradicionalmente, la clasificación de música ha estado basada en catálogos de metadatos (artista, album, título de la canción, ...) \cite{yang2011music}. Esta clasificación puede no ser suficiente para el usuario. Tener acceso a una categorización de la música en función de emociones o estados de ánimo puede ser de gran utilidad para muchas aplicaciones. Imaginemos un reproductor de música que, además de recomendarte canciones según un grupo o un estilo musical, sea capaz de hacerlo según el estado de ánimo que tengas.
 \newline
-Aquí es donde entra en juego el Reconocimiento Musical de Emociones (Music Emotion Recognition). MER categoriza emociones y aplica técnicas de Machine Learning (Aprendizaje Máquina) para clasificarlas usando diferentes características extraídas de la señal acústica de la canción \cite{yang2011music}.
-\newline
-En este trabajo blablablablabla..........
+Aquí es donde entra en juego el Reconocimiento Musical de Emociones (\textit{Music Emotion Recognition}). MER categoriza emociones y aplica técnicas de \textit{Machine Learning} (Aprendizaje Máquina) para clasificarlas usando diferentes características extraídas de la señal acústica de la canción \cite{yang2011music}.
+
+
 
 \subsection{Objetivos del trabajo}
 El objetivo principal del trabajo es diseñar un sistema para el reconocimiento de emociones en pistas de audio.
@@ -185,19 +191,19 @@ Los objetivos específicos que se plantean son los siguientes:
 \end{itemize}
 
 \subsection{Metodología y estructura de la memoria}
-La memoria está compuesta por cuatro apartados:
+La memoria está compuesta por cinco apartados:
 \begin{enumerate}
 	\item Una introducción de la memoria donde se expone el contexto y la motivación del trabajo.
 	\item El capítulo de \textit{Estado del arte} donde se expone:
 	\begin{itemize}
 		\item una introducción a la campo de estudio MER,
-		\item una descripción de Machine Larning y los diferentes tipos de algoritmos que hay, 
-		\item y una explicación de los modelos de regresión y algunos de los ejemplo más comunes
+		\item una descripción de \textit{Machine Larning} y los diferentes tipos de algoritmos que hay, 
+		\item y una explicación de los modelos de regresión y la difinición de los usados en el trabajo
 	\end{itemize}
 	\item El capítulo de \textit{Experimentos} dividido en:
 	\begin{itemize}
 		\item descripción de los datos utilizados,
-		\item y los algoritmos de Machine Learning empleados en el trabajo
+		\item y algoritmos de \textit{Machine Learning} empleados en el trabajo
 	\end{itemize}
 	\item Los resultados detallados de los experimentos realizados en el capítulo anterior.
 	\item Las conclusiones obtenidas del trabajo, y líneas futuras en las que seguir profundizando en MER.
@@ -296,8 +302,8 @@ Existen distintas formas de estudiar el timbre vocal basadas en el estudio de la
 \paragraph{Factores de situación}
 En el apartado ~\ref{emo} donde se describen las emociones, se hace referencia a las emociones inducidas. La situación del oyente (momento del día, si está acompañado o solo, etc) afecta directamente a las emociones inducidas. El estudio de la situación puede ser de ayuda para dar contexto acerca del entorno que tiene el oyente, y modificar (o no) la predicción de emociones.
 
-\paragraph{Conexión entre enfoques dimensional y categórico}
-Como se describe en el apartado ~\ref{tax_emo} hay dos enfoques bien diferenciados en el estudio de MER: dimensional/continuo y categórico/discreto. una combinación de los dos enfoques puede resultar eficaz.
+\paragraph{Conexión entre enfoques dimensional y categórico}\label{combi}
+Como se describe en el apartado ~\ref{tax_emo} hay dos enfoques bien diferenciados en el estudio de MER: dimensional/continuo y categórico/discreto. Una combinación de los dos enfoques puede resultar eficaz.
 
 \subsection{Técnicas de Aprendizaje Máquina}
 
@@ -326,7 +332,7 @@ Los tipos de Machine Learning se clasifican en diferentes categorías según su 
 Estos criterios no son exclusivos. Pueden combinarse de la forma que se quiera.
 
 \subsubsection{Sistemas supervisados vs. no supervisados}
-Los sistemas supervisados de Machine Learning son algoritmos que utilizan datos etiquetados (etiquetas) durante la fase de entrenamiento del sistema. Son utilizados tanto para modelos de clasificación como para modelos de regresión (predicción de un número dado un paquete de características). Algunos de los algoritmos supervisados más importantes son:
+Los sistemas supervisados de \textit{Machine Learning} son algoritmos que utilizan datos etiquetados (etiquetas) durante la fase de entrenamiento del sistema. Son utilizados tanto para modelos de clasificación como para modelos de regresión (predicción de un número dado un paquete de características). Algunos de los algoritmos supervisados más importantes son:
 \begin{itemize}
 	\item KNN vecinos
 	\item Regresión lineal
@@ -335,7 +341,7 @@ Los sistemas supervisados de Machine Learning son algoritmos que utilizan datos 
 \end{itemize}
 Por otro lado nos encontramos los sistemas no supervisados. Se utilizan para encontrar patrones o estructuras ocultas en datos. A diferencia de los supervisados, estos algoritmos no utilizan ningún etiquetado ni requieren de ninguna salida deseada durante el entrenamiento. Tipos de algoritmos no supervisados:
 \begin{itemize}
-	\item Agrupamiento (Clustering)
+	\item Agrupamiento (\textit{Clustering})
 	\begin{itemize}
 		\item K-medias
 		\item DBSCAN
@@ -343,15 +349,15 @@ Por otro lado nos encontramos los sistemas no supervisados. Se utilizan para enc
 	\end{itemize}
 	\item Detección de anomalías
 	\begin{itemize}
-		\item One-class SVM
-		\item Isolation Forest	
+		\item \textit{One-class SVM}
+		\item \textit{Isolation Forest}	
 	\end{itemize}
 	\item Reducción de visualización
 	\begin{itemize}
 		\item Análisis de componentes principales (PCA)
-		\item Kernel PCA	
-		\item Locally-Linear Embedding (LLE)
-		\item t-distributed Stochastic Neighbor Embedding (t-SNE)
+		\item \textit{Kernel PCA}	
+		\item \textit{Locally-Linear Embedding} (\textit{LLE})
+		\item \textit{t-distributed Stochastic Neighbor Embedding} (\textit{t-SNE})
 	\end{itemize}
 	\item Aprendizaje de reglas de asociación
 	\begin{itemize}
@@ -360,15 +366,15 @@ Por otro lado nos encontramos los sistemas no supervisados. Se utilizan para enc
 	\end{itemize}	
 \end{itemize}
 
-\subsubsection{Batch Learning y Online Learning}
-Los sistemas Batch Learning son incapaces de aprender de forma incremental. El modelo se entrena utilizando la totalidad del conjunto de datos de entrenamiento de una sola vez, en lugar de hacerlo de manera incremental o en pequeñas partes. Dada la forma de entrenar, estos sistemas son capaces de captar mejor las complejidades y las variabilidades de los datos. Sin embargo, son más vulnerables frente a cambios en los datos puesto que sería necesario volver a entrenar el modelo de nuevo.
+\subsubsection{\textit{Batch Learning} y \textit{Online Learning}}
+Los sistemas \textit{Batch Learning} son incapaces de aprender de forma incremental. El modelo se entrena utilizando la totalidad del conjunto de datos de entrenamiento de una sola vez, en lugar de hacerlo de manera incremental o en pequeñas partes. Dada la forma de entrenar, estos sistemas son capaces de captar mejor las complejidades y las variabilidades de los datos. Sin embargo, son más vulnerables frente a cambios en los datos puesto que sería necesario volver a entrenar el modelo de nuevo.
 \newline
-Los sistemas Online Learning son lo contrario a los anteriores: se entrenan de forma incremental. Se dividen los datos en pequeñas instancias (o mini-batches) y se alimenta el sistema de forma secuencial. Cada aprendizaje es rápido y barato. Se utiliza para sistemas donde se reciben datos de forma continua, o cuando se requiere una gran cantidad de datos para el entrenamiento. En estos modelos es importante el parámetro de tasa de aprendizaje (learning rate): Una tasa de aprendizaje alto hará que el sistema se adapte bien a cambios en los datos, pero también será más susceptible a olvidar más rápido datos antiguos.
+Los sistemas \textit{Online Learning} son lo contrario a los anteriores: se entrenan de forma incremental. Se dividen los datos en pequeñas instancias (o \textit{mini-batches}) y se alimenta el sistema de forma secuencial. Cada aprendizaje es rápido y barato. Se utiliza para sistemas donde se reciben datos de forma continua, o cuando se requiere una gran cantidad de datos para el entrenamiento. En estos modelos es importante el parámetro de tasa de aprendizaje (\textit{learning rate}): Una tasa de aprendizaje alto hará que el sistema se adapte bien a cambios en los datos, pero también será más susceptible a olvidar más rápido datos antiguos.
 
 
 \subsubsection{Basados en instancias y Basados en modelos}
 Esta clasificación hace referencia a cómo los sistemas de aprendizaje se generalizan. Por un lado están los basados en instancias: el sistema aprende los ejemplos de memoria y luego generaliza a nuevos casos comparándolos con los ejemplos aprendidos (o un subconjunto de
-ellos). Es decir, utiliza una medida de similitud. Estos sistemas tiene un buen rendimiento con datos entrenados, pero no es suficiente para un sistema de Machine Learning: el verdadero objetivo es tener un buen rendimiento en instancias nuevas.
+ellos). Es decir, utiliza una medida de similitud. Estos sistemas tiene un buen rendimiento con datos entrenados, pero no es suficiente para un sistema de \textit{Machine Learning}: el verdadero objetivo es tener un buen rendimiento en instancias nuevas.
 \newline
 Aquí es donde se encuentran los sistemas basados en modelos, cuya forma de generalizar es a partir de modelos que hagan predicciones. Estos sistemas tienen mucho mejor rendimiento frente a instancias de datos muy ruidosas (gran cantidad de datos aleatorios). Para conseguir buenos resultados con estos sistemas se deben seguir algunos pasos como: selección del modelo (elegir el mejor modelo que se adapte a nuestro sistema), ajuste del modelo (elección correcta de los parámetro o hiperparámetros),  o entrenamiento el modelo.
 
@@ -377,7 +383,7 @@ La validación cruzada (o \textit{cross-validation}) es una técnica fundamental
 \newline
 Para entender mejor esta técnica, se parte de la diferencia entre la tasa de error de test y la tasa de error de entrenamiento. La tasa de error de test se calcula fácilmente comparando los datos obtenidos en la predicción (se introducen en el modelo entrenado las variables independientes, para obtener la predicción de la variable objetivo) con los datos reales. Sin embargo, la tasa de error de entrenamiento no se puede calcular (sin emplear una técnica precisa para ello), al ser el mismo conjunto de datos (datos de entrenamiento) el mismo que usaríamos para entrenar y validar \cite{gareth2013introduction}.
 \newline
-Existen diferentes tipos de \textit{cross-validation}, pero el más utilizado es K-Fold. Parte de la idea de dividir el conjunto de datos de entrenamiento en \textit{k} particiones, de las cuales se usarán \textit{k-1} para entrenamiento y la restante para la validación. Este proceso se repite de forma iterativa, de manera todas las particiones se han usado una vez para validar y \textit{k-1} veces para entrenar \cite{hastie2009elements}.
+Existen diferentes tipos de \textit{cross-validation}, pero el más utilizado es \textit{K-Fold}. Parte de la idea de dividir el conjunto de datos de entrenamiento en \textit{k} particiones, de las cuales se usarán \textit{k-1} para entrenamiento y la restante para la validación. Este proceso se repite de forma iterativa, de manera todas las particiones se han usado una vez para validar y \textit{k-1} veces para entrenar \cite{hastie2009elements}.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\linewidth]{figs/cross-validation}
@@ -488,7 +494,7 @@ Los métodos basados en árboles de decisión son simples, y útiles para la int
 %%%%%%%%%%%%%% - EXPERIMENTOS - %%%%%%%%%%%%%
 \newpage
 \section{Experimentos}
-En este capítulo se describe el proceso del desarrollo de la aplicación MER. Primeramente se describe el conjunto de datos utilizado en el experimento, y cómo han sido manipulados los datos para que sean utilizados por el sistema. Por último, se describen las técnicas de Machine Learning utilizadas en la aplicación.
+En este capítulo se describe el proceso del desarrollo de la aplicación MER. Primeramente se describe el conjunto de datos utilizado en el experimento, y cómo han sido manipulados los datos para que sean utilizados por el sistema. Por último, se describen las técnicas de \textit{Machine Learning} utilizadas en la aplicación.
 
 
 \subsection{Conjunto de datos}
@@ -503,8 +509,8 @@ Las características presentes en el conjunto de datos son \cite{openSMILEfeatur
 \begin{itemize}
 	\item Energía
 	\item Intensidad de fotograma/sonoridad (aproximación)
-	\item Espectros de banda crítica (Mel/Bark/Octave, filtros de enmascaramiento triangulares)
-	\item Mel-/Bark-Frequency-Cepstral Coefficients (MFCC)
+	\item Espectros de banda crítica (\textit{Mel/Bark/Octave}, filtros de enmascaramiento triangulares)
+	\item \textit{Mel-/Bark-Frequency-Cepstral Coefficients} (\textit{MFCC})
 	\item Espectros auditivos
 	\item Sonoridad aproximada a partir de espectros auditivos.
 	\item Coeficientes perceptivos lineales predictivos (PLP)
@@ -513,7 +519,7 @@ Las características presentes en el conjunto de datos son \cite{openSMILEfeatur
 	\item Pares espectrales de líneas (LSP, también conocido como LSF)
 	\item Frecuencia fundamental (mediante el método ACF/Cepstrum y mediante sumación subarmónica (SHS))
 	\item Probabilidad de emisión de voz a partir del pico del espectro ACF y SHS
-	\item Calidad de voz: Jitter y Shimmer
+	\item Calidad de voz: \textit{Jitter} y \textit{Shimmer}
 	\item Frecuencias de formantes y anchos de banda.
 	\item Tasa de cruce por cero y media
 	\item Características espectrales (energías de banda arbitrarias, puntos de caída, centroide, entropía, maxpos, minpos, varianza (= dispersión), asimetría, curtosis, pendiente)
@@ -541,15 +547,15 @@ En el conjunto de datos de DEAM \cite{AlajankiEmoInMusicAnalysis} también hay i
 \subsection{Desarrollo}
 En este apartado se describen los pasos a seguir en el desarrollo del sistema MER. El sistema está compuesto, en primer lugar, por un procesado de datos: se toman los archivos proporcionados por el conjunto de datos y se manipulan para crear las variables de las que están formados los modelos.
 \newline
-Por último, se documenta todo el desarrollo seguido para el diseño de la aplicación MER de predicción de emociones. En los siguientes apartados se procede a explicar cómo se han diseñado y entrenado los modelos  para cada uno de los algoritmos. Los algoritmos de Machine Learning elegidos son:
+Por último, se documenta todo el desarrollo seguido para el diseño de la aplicación MER de predicción de emociones. En los siguientes apartados se procede a explicar cómo se han diseñado y entrenado los modelos  para cada uno de los algoritmos. Los algoritmos de \textit{Machine Learning} elegidos son:
 \begin{itemize}
 	\item Árbol de decisión
 	\item Bosques aleatorios
 	\item Regresión lineal
-	\item Regresión ridge
+	\item Regresión \textit{ridge}
 \end{itemize}
 
-La taxonomía de emociones elegida para este experimento es la continua/dimensional (ver apartado ~\ref{tax_emo}), donde las emociones están representadas por dos valores: valencia y activación. Visto desde el punto de vista de Machine Learning, se presenta un sistema de predicción donde hay dos variables objetivo. Por lo tanto, es necesario dividir el problema en dos sistemas diferentes. El resultado son dos modelos de predicción diferentes para cada algoritmo (uno para valencia y otro para activación).
+La taxonomía de emociones elegida para este experimento es la continua/dimensional (ver apartado ~\ref{tax_emo}), donde las emociones están representadas por dos valores: valencia y activación. Visto desde el punto de vista de \textit{Machine Learning}, se presenta un sistema de predicción donde hay dos variables objetivo. Por lo tanto, es necesario dividir el problema en dos sistemas diferentes. El resultado son dos modelos de predicción diferentes para cada algoritmo (uno para valencia y otro para activación).
 \newline
 Tanto la memoria como el código están disponibles en este repositorio Github \url{https://github.com/viglescue/tfg}. El código fuente de la aplicación MER está dividido en dos archivos: \textit{data-recap.ipynb} con todo el desarrollo correspondiente al procesamiento de datos y archivos del conjunto de datos, y \textit{MER-ML-models.ipynb} con el desarrollo de los diferentes algoritmos para la predicción de emociones. El experimento al completo está desarrollado en lenguaje Python, utilizando cuadernos Jupyter en el entorno de Anaconda. 
 
@@ -671,6 +677,7 @@ El ajuste de hiperparámetros del modelo se ha realizado mediante una validació
 	\caption{Uso de las funciones \textit{DecisionTreeRegressor} y \textit{GridSearchCV} de \textit{sckit-learn}}
 	\label{fig:importtree}
 \end{figure}
+
 Mediante la variable \textit{grid\_hp\_tree\_reg} mostrada en la Figura \ref{fig:paramstree} se ha definido un espacio de valores de condiguración del árbol de decisión. Esta variable será el valor de entrada del parámetro \textit{param\_grid} en el proceso de validación cruzada exhaustiva de \textit{GridSearchCV}.
 \begin{figure}[H]
 	\centering
@@ -679,7 +686,7 @@ Mediante la variable \textit{grid\_hp\_tree\_reg} mostrada en la Figura \ref{fig
 	\label{fig:paramstree}
 \end{figure}
 
-La validación cruzada da como resultado la siguiente combinación de hiperparámetros para el árbol de decisión, la más precisa dentro del espacio de valores de los parámetros contenidos en la variable \textit{grid\_hp\_tree\_reg}:
+La validación cruzada da como resultado la siguiente combinación de hiperparámetros para el árbol de decisión, la más precisa dentro del espacio de valores de los parámetros contenidos en \textit{grid\_hp\_tree\_reg}:
 \begin{itemize}
 	\item Para valencia:
 	\begin{figure}[H]
@@ -701,13 +708,20 @@ Una vez obtenidos los hiperparámetros se construye el algoritmo de árbol de de
 En esto punto del experimento, el árbol de decisión está listo para ser utilizado con los datos de test (\textit{X\_test \_val} y \textit{X\_test\_ar}). La precisión y la fiabilidad del modelo será evaluada en el apartado \ref{resultados}.
 
 \subsubsection{Bosques aleatorios}
-Para la creación de bosques aleatorios, se ha utilizado la función \textit{LinearRegression} del módulo \textit{linear\_model}, perteneciente a la librería \textit{scikit-learn} de Python \cite{scikit-learn}.
+Para la creación de bosques aleatorios, se ha utilizado la función \textit{RandomForestRegressor} del módulo \textit{ensemble}, perteneciente a la librería \textit{scikit-learn} de Python \cite{scikit-learn}.
 \newline
 El ajuste de hiperparámetros del modelo se ha realizado mediante una validación cruzada exhaustiva utilizando \textit{GridSearchCV} (función presente en el módulo \textit{model\_selection} de \textit{sckit-learn} \cite{scikit-learn}).
 
-Uno de los parámetro de entrada de \textit{GridSearchCV} es \textit{param\_grid}. Este parámetro lee una selección de valores para cada hiperparámetro de \textit{DecisionTreeRegressor}. Estos valores se recogen en la variable \textit{grid-hp-tree-reg}.
+Para este modelo, los valores de entrada de la variable \textit{param\_grid} de \textit{GridSearchCV} están contenidos en la la variable \textit{grid\_hp\_random\_forest} (ver Figura \ref{fig:paramsforest}).
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{figs/params_forest}
+	\caption{Variable \textit{grid\_hp\_random\_forest} para la validación cruzada de \textit{LinearRegression}}
+	\label{fig:paramsforest}
+\end{figure}
 
-La validación cruzada dará como resultado la combinación de parámetros de entrada donde la función \textit{DecisionTreeRegressor} tenga una mayor precisión (\textit{score}). Los hipermetamorfosis elegidos por la validación cruzada son:
+
+La validación cruzada da como resultado los hiperparámetros:
 \begin{itemize}
 	\item Para valencia:
 	\begin{figure}[H]
@@ -738,7 +752,7 @@ Para el ajuste de hiperparámetros del modelo, se ha utilizado \textit{GridSearc
 	\caption{Uso de las funciones \textit{LinearRegression} y \textit{GridSearchCV} de \textit{sckit-learn}}
 	\label{fig:importlinearreg}
 \end{figure}
-Mediante la variable \textit{grid-hp-linear-reg} mostrada en la Figura \ref{fig:paramslinearreg} se ha definido un espacio de valores de condiguración del árbol de decisión. Esta variable será el valor de entrada del parámetro \textit{param\_grid} en el proceso de validación cruzada exhaustiva de \textit{GridSearchCV}.
+Mediante la variable \textit{grid\_hp\_linear\_reg} mostrada en la Figura \ref{fig:paramslinearreg} se ha definido un espacio de valores de condiguración del árbol de decisión. Esta variable será el valor de entrada del parámetro \textit{param\_grid} en el proceso de validación cruzada exhaustiva de \textit{GridSearchCV}.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\linewidth]{figs/params_linear_reg}
@@ -765,14 +779,22 @@ La validación cruzada da como resultado la combinación de parámetros de entra
 Una vez obtenidos los hiperparámetros se construye el algoritmo de regresión lineal. Después se entrena el modelo con las variables de entrenamiento (\textit{X\_train\_val} y \textit{y\_train\_val} para valencia, y \textit{X\_train\_ar} y \textit{y\_train\_ar} para activación).
 \newline
 En esto punto del experimento, el modelo de regresión lineal está listo para ser utilizado con los datos de test (\textit{X\_test\_val} y \textit{X\_test\_ar}). La precisión y la fiabilidad del modelo será evaluada en el apartado \ref{resultados}.
-\subsubsection{Regresión ridge}
-Para la implementación de los modelos de regresión ridge, se ha utilizado la función \textit{LinearRegression} del módulo \textit{linear\_model}, perteneciente a la librería \textit{scikit-learn} de Python \cite{scikit-learn}.
+
+\subsubsection{Regresión \textit{ridge}}
+Para la implementación de los modelos de regresión \textit{ridge}, se ha utilizado la función \textit{Ridge}, perteneciente a la librería \textit{scikit-learn} de Python \cite{scikit-learn}.
 \newline
 Para el ajuste de hiperparámetros del modelo, se ha utilizado \textit{GridSearchCV} (función presente en el módulo \textit{model selection} de \textit{sckit-learn} \cite{scikit-learn}) para realizar una validación cruzada exhaustiva.
 
-Uno de los parámetro de entrada de \textit{GridSearchCV} es \textit{param\_grid}. Este parámetro lee una selección de valores para cada hiperparámetro de \textit{LinearRegression}. Estos valores se recogen en la variable \textit{grid\_hp\_linear\_reg}.
+Uno de los parámetro de entrada de \textit{GridSearchCV} es \textit{param\_grid}. Este parámetro lee una selección de valores para cada hiperparámetro de \textit{LinearRegression}. Estos valores se recogen en la variable \textit{grid\_hp\_ridge\_reg} (Ver Figura \ref{fig:paramsridge}).
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{figs/params_ridge}
+	\caption{Variable \textit{grid\_hp\_ridge\_reg} para la validación cruzada de \textit{Ridge}}
+	\label{fig:paramsridge}
+\end{figure}
 
-La validación cruzada dará como resultado la combinación de parámetros de entrada donde la función \textit{LinearRegression} tenga una mayor precisión (\textit{score}). Los hipermetamorfosis elegidos por la validación cruzada son:
+
+Los hiperparámetros elegidos por la validación cruzada para la regresión lineal son:
 \begin{itemize}
 	\item Para valencia:
 	\begin{figure}[H]
@@ -784,7 +806,7 @@ La validación cruzada dará como resultado la combinación de parámetros de en
 	\item Para activación:
 	\begin{figure}[H]
 		\centering
-		\includegraphics[width=0.7\linewidth]{figs/final_params_ridge_arousal}
+		\includegraphics[width=0.5\linewidth]{figs/final_params_ridge_arousal}
 		\caption{Hiperparámetros de la regresión \textit{ridge} para la predicción de activación}
 		\label{fig:finalparamsridgearousal}
 	\end{figure}
@@ -805,12 +827,15 @@ En esto punto del experimento, el modelo de regresión ridge está listo para se
 %%%%%%%%%%%%%% - RESULTADOS - %%%%%%%%%%%%%
 \newpage
 \section{Resultados}\label{resultados}
-En este experimento se presentan algoritmos de regresión de Machine Learning. La evaluación de este tipo de modelos se realiza mediante el cálculo de metricas de evaluación. el principio básico de esta evaluación es comparar las variables objetivo predecidas por el sistema a partir de las variables independientes de test (\textit{X\_test\_val} y \textit{X\_test\_ar}), con las variables objetivo reales (\textit{y\_test\_val} y \textit{y\_test\_ar}). Las métricas elegidas son:
+La evaluación de modelos predictivos se realiza a través de la comparación de las variables objetivo predichas por el sistema (a partir de las variables independientes de test) con las variables objetivo reales. En este trabajo las variables de test son \textit{X\_test\_val} y \textit{X\_test\_ar}, y las objetivo \textit{y\_test\_val} y \textit{y\_test\_ar}.
+\newline
+A diferencia de los problemas de clasificación (donde la precisión de los modelos se mide fácilmente  haciendo la media de fallos y aciertos del modelo), los modelos de regresión precisan de diferentes métricas para evaluar la efectividad. Los valores a predecir y los reales son continuos, y mediante las métricas de evaluación se mide lo cerca (o lejos) que están los datos reales de los predichos.
+Las métricas elegidas para este experimento son:
 \begin{itemize}
-	\item Mean absolute error (MAE)
-	\item Mean squared error (MSE)
+	\item \textit{Mean absolute error} (MAE)
+	\item \textit{Mean squared error} (MSE)
 	\item Coeficiente de determinación (R2 \textit{Score})
-	\item Mean absolute percentage error (MAPE)
+	\item \textit{Mean absolute percentage error} (MAPE)
 \end{itemize}
 Para el obtener estas métricas se ha utilizado la librería de \textit{scikit-learn} de Python, y las funciones correspondientes para cada caso.
 \subsection{Mean absolute error (MAE)}
@@ -859,7 +884,7 @@ Los resultados obtenidos durante el experimento son:
 \end{itemize}
 
 \subsection{Mean squared error (MSE)}
-El \textit{Mean squared error} (o error cuadrado medio) es similar al MAE, con la diferencia de que mi el promedio de los errores al cuadrado. La fórmula de MAE es \cite{eswiki:159951880}:
+El \textit{Mean squared error} (o error cuadrado medio) es similar al MAE, con la diferencia de que mide el promedio de los errores al cuadrado. La fórmula de MAE es \cite{eswiki:159951880}:
 \begin{equation}
 	MSE = \frac{1}{N} \sum_{i=1}^{N} (y_i - x_i|)²
 \end{equation}
@@ -904,7 +929,7 @@ Los resultados obtenidos durante el experimento son:
 \end{itemize}
 
 \subsection{Coeficiente de determinación (R2 \textit{Score})}
-El coeficiente de determinación (R2 \textit{Score}) mide la varianza en la variable dependiente a  partir de las variables independientes. Su fórmula es \cite{eswiki:158364923}:
+El coeficiente de determinación (R2 \textit{Score}) mide la varianza en la variable objetivo a  partir de las variables independientes. Su fórmula es \cite{eswiki:158364923}:
 \begin{equation}
 	R2 = 1 - \frac{\sigma^{2}_r}{\sigma^{2}_y} 
 \end{equation}
@@ -947,7 +972,7 @@ donde
 \end{itemize}
 
 \subsection{Mean absolute percentage error (MAPE)}
-El error porcentual absoluto medio (\textit{Mean absolute percentage error}) mide precisión de la predicción como una proporción entre el valor real y valor a predecir. Su fórmula es \cite{enwiki:1225070385}:
+El error porcentual absoluto medio (\textit{Mean absolute percentage error}) mide la precisión de la predicción como una proporción entre el valor real y valor a predecir. Su fórmula es \cite{enwiki:1225070385}:
 \begin{equation}
 	MAPE = 100 \frac{1}{n} \sum_{t=1}^{n} |\frac{A_t - F_t}{A_T} 
 \end{equation}
@@ -1004,8 +1029,16 @@ Los resultados obtenidos son:
 \newpage
 \section{Conclusiones}
 
+\subsection{Conclusiones}
+\subsection{Futuras líneas de trabajo}
 
-
+Una vez realizados los experimentos propuestos para el trabajo se detectan las siguientes líneas de estudio futuras para continuar mejorando y expandiendo esta aplicación MER:
+\begin{itemize}
+	\item Implementación de otros algoritmos y técnicas de Machine Learning con el objetivo de mejorar las puntuaciones de precisión en la predicción obtenidas en el experimento.
+	\item Hubiera sido interesante contar con una base de datos donde, el espacio bidimensional de Russell, estuviera segmentado en distintas emociones. Como se comentaba en el apartado \ref{combi}, una combinación discreta-dimensional de la taxonomía de las emociones puede ayudar en la efectividad del modelo. De esta forma, la aplicación sería mucho más intuitiva puesto que trabajaría directamente con emociones discretas en lugar de su representación mediante valencia-activación. Por ejemplo, si una canción está identificada con la emoción "alegre", se puede probar a simple vista si la aplicación predijo "alegre" de forma satisfactoria u otra emoción.
+	\item La letra de las canciones juega un papel importante en las emociones percibidas por el oyente. Una posible línea de trabajo es la introducción de la letra como una variable independiente más del modelo. Al estudiar solo las características acústicas de la cancion, se pierden los posibles matices que pueda tener la letra. Una canción puede tener una letra triste pero sin embargo una música alegre, entonces la emoción percibida se puede ver "contaminada" en gran manera por la letra.
+	\item El complemento más obvio a este trabajo es la integración de este desarrollo en una aplicación final (de interfaz de usuario amigable). Un caso claro sería un reproductor streaming de música, que pueda recomendar o clasificar canciones en función de sus emociones. O un editor de video que, como complemento a la imagen, quiera incluir música específica para evocar en el usuario una emoción precisa
+\end{itemize}
 
 
 
