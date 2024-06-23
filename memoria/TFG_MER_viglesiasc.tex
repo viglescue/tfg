@@ -827,9 +827,9 @@ En esto punto del experimento, el modelo de regresión ridge está listo para se
 %%%%%%%%%%%%%% - RESULTADOS - %%%%%%%%%%%%%
 \newpage
 \section{Resultados}\label{resultados}
-La evaluación de modelos predictivos se realiza a través de la comparación de las variables objetivo predichas por el sistema (a partir de las variables independientes de test) con las variables objetivo reales. En este trabajo las variables de test son \textit{X\_test\_val} y \textit{X\_test\_ar}, y las objetivo \textit{y\_test\_val} y \textit{y\_test\_ar}.
+La evaluación de modelos predictivos se realiza a través de la comparación de las variables objetivo predichas por el sistema (a partir de las variables independientes de test) con las variables objetivo reales. En este trabajo las variables independientes de test son \textit{X\_test\_val} y \textit{X\_test\_ar}, y las objetivo \textit{y\_test\_val} y \textit{y\_test\_ar}.
 \newline
-A diferencia de los problemas de clasificación (donde la precisión de los modelos se mide fácilmente  haciendo la media de fallos y aciertos del modelo), los modelos de regresión precisan de diferentes métricas para evaluar la efectividad. Los valores a predecir y los reales son continuos, y mediante las métricas de evaluación se mide lo cerca (o lejos) que están los datos reales de los predichos.
+A diferencia de los problemas de clasificación (donde la precisión de los modelos se mide a partir de los fallos y aciertos del modelo), los modelos de regresión precisan de diferentes métricas para evaluar la efectividad. Los valores a predecir y los reales son continuos, y mediante las métricas de evaluación se mide lo cerca (o lejos) que están los datos reales de los predichos.
 Las métricas elegidas para este experimento son:
 \begin{itemize}
 	\item \textit{Mean absolute error} (MAE)
@@ -837,24 +837,25 @@ Las métricas elegidas para este experimento son:
 	\item Coeficiente de determinación (R2 \textit{Score})
 	\item \textit{Mean absolute percentage error} (MAPE)
 \end{itemize}
-Para el obtener estas métricas se ha utilizado la librería de \textit{scikit-learn} de Python, y las funciones correspondientes para cada caso.
-\subsection{Mean absolute error (MAE)}
-El \textit{Mean absolute error} (o error absoluto medio) se calcula como el promedio de las diferencias absolutas entre dos variables continuas. La fórmula de MAE es \cite{eswiki:146234007}:
-\begin{equation}
+Para obtener estas métricas se ha utilizado la librería de \textit{scikit-learn} de Python, y las funciones correspondientes para cada caso.
+\subsection{Mean absolute error (MAE)}\label{mae}
+El \textit{mean absolute error} (o error absoluto medio) se calcula como el promedio de las diferencias absolutas entre dos variables continuas. La fórmula del MAE es \cite{eswiki:146234007}:
+\begin{equation}\label{eq:mae}
 	MAE = \frac{1}{N} \sum_{i=1}^{N} |y_i - x_i|
 \end{equation}
 donde
 \begin{itemize}
 	\item $n$ es el número de observaciones,
 	\item $y_i$ es el valor real de la observación,
-	\item $x_i$ es el valor predictivo.
+	\item $x_i$ es el valor predicho.
 \end{itemize}
-Los resultados obtenidos durante el experimento son:
+Los resultados del MAE obtenidos durante el experimento son:
 \begin{itemize}
 	\item Para valencia:
 	\begin{table}[H]
 		\centering
 		\caption{MAE de valencia}
+		\label{tab:maevalencia}
 		\begin{tabular}{|c|c|}
 			\hline
 			\textbf{Algoritmo} & \textbf{MAE} \\
@@ -870,6 +871,7 @@ Los resultados obtenidos durante el experimento son:
 	\begin{table}[H]
 		\centering
 		\caption{MAE de activación}
+		\label{tab:maeactivacion}
 		\begin{tabular}{|c|c|}
 			\hline
 			\textbf{Algoritmo} & \textbf{MAE} \\
@@ -882,11 +884,16 @@ Los resultados obtenidos durante el experimento son:
 		\end{tabular}
 	\end{table}
 \end{itemize}
+Si se observa la fórmula \eqref{eq:mae}, MAE mide la diferencia media entre el valor real y el valor predicho. Por lo tanto, el mejor modelo respecto a esta métrica será aquel con el menor MAE. En las tablas \ref{tab:maevalencia} y \ref{tab:maeactivacion} se puede ver que los modelos con mejor puntuación son: regresión lineal para valencia, y bosque aleatorio para activación.
+\newline
+La interpretación del MAE se hace en función de los valores posibles de la variable dependiente, que para este caso, tanto valencia como activación están entre 1 y 9 (esta relación se puede ver mejor en el apartado \ref{mape} donde se analiza la métrica MAPE). Observando los resultados, los modelos con mejor puntuación MAE predicen con un error de 0.649 y 0.718 respectivamente.
+
+
 
 \subsection{Mean squared error (MSE)}
-El \textit{Mean squared error} (o error cuadrado medio) es similar al MAE, con la diferencia de que mide el promedio de los errores al cuadrado. La fórmula de MAE es \cite{eswiki:159951880}:
+El \textit{mean squared error} (o error cuadrático medio) es similar al MAE, con la diferencia de que mide el promedio de los errores al cuadrado. La fórmula del MSE es \cite{eswiki:159951880}:
 \begin{equation}
-	MSE = \frac{1}{N} \sum_{i=1}^{N} (y_i - x_i|)²
+	MSE = \frac{1}{N} \sum_{i=1}^{N} (y_i - x_i)^{2}
 \end{equation}
 donde
 \begin{itemize}
@@ -894,12 +901,13 @@ donde
 	\item $y_i$ es el valor real de la observación,
 	\item $x_i$ es el valor predictivo.
 \end{itemize}
-Los resultados obtenidos durante el experimento son:
+Los resultados del MSE obtenidos son:
 \begin{itemize}
 	\item Para valencia:
 	\begin{table}[H]
 		\centering
-		\caption{MSE de activación}
+		\caption{MSE de valencia}
+		\label{tab:msevalencia}
 		\begin{tabular}{|c|c|}
 			\hline
 			\textbf{Algoritmo} & \textbf{MSE} \\
@@ -915,6 +923,7 @@ Los resultados obtenidos durante el experimento son:
 	\begin{table}[H]
 		\centering
 		\caption{MSE de activación}
+		\label{tab:mseactivacion}
 		\begin{tabular}{|c|c|}
 			\hline
 			\textbf{Algoritmo} & \textbf{MSE} \\
@@ -927,9 +936,10 @@ Los resultados obtenidos durante el experimento son:
 		\end{tabular}
 	\end{table}
 \end{itemize}
+Al igual que MAE, cuanto menor sea el valor obtenido, mejor será el modelo. Los resultado obtenidos de esta métrica son (ver tablas \ref{tab:msevalencia} y \ref{tab:mseactivacion}): modelo de regresión lineal para valencia con una MSE de 0.646, y modelo de bosque aleatorio para activación con un valor de 0.806. Ambos valores son menores que 1, por lo que el resultado para los modelos se puede considerar bueno. 
 
-\subsection{Coeficiente de determinación (R2 \textit{Score})}
-El coeficiente de determinación (R2 \textit{Score}) mide la varianza en la variable objetivo a  partir de las variables independientes. Su fórmula es \cite{eswiki:158364923}:
+\subsection{Coeficiente de determinación (R2 \textit{score})}
+El coeficiente de determinación (R2 \textit{score}) mide la varianza en la variable objetivo a partir de las variables independientes. Su fórmula es \cite{eswiki:158364923}:
 \begin{equation}
 	R2 = 1 - \frac{\sigma^{2}_r}{\sigma^{2}_y} 
 \end{equation}
@@ -938,11 +948,13 @@ donde
 	\item $\sigma^{2}_r$ es la varianza de la variable residual (diferencia entre lo real y lo predicho),
 	\item $\sigma^{2}_y$ es la varianza de la variable independiente.
 \end{itemize}
+Los valores obtenidos son los siguientes:
 \begin{itemize}
 	\item Para valencia:
 	\begin{table}[H]
 		\centering
 		\caption{Coeficiente R2 para valencia}
+		\label{tab:r2valencia}
 		\begin{tabular}{|c|c|}
 			\hline
 			\textbf{Algoritmo} & \textbf{R2} \\
@@ -958,6 +970,7 @@ donde
 	\begin{table}[H]
 		\centering
 		\caption{Coeficiente R2 para activación}
+		\label{tab:r2activacion}
 		\begin{tabular}{|c|c|}
 			\hline
 			\textbf{Algoritmo} & \textbf{R2} \\
@@ -970,9 +983,10 @@ donde
 		\end{tabular}
 	\end{table}
 \end{itemize}
+Los valores de R2 varían entre 0 y 1 (aunque hay casos donde puede ser negativo si el modelos es muy inadecuado). Si $R2 = 1$ significa que el modelo explica toda la variabilidad de la variable independiente, mientras que si $R2 = 0$ no lo hace. En los resultados (tablas \ref{tab:r2valencia} y \ref{tab:r2activacion}) se observa que los modelos con mejor R2 son: regresión lineal para valencia, y bosque aleatorio para activación. Ambos valores están alrededor de 0.5, lo que quiere decir que los modelos explican el 50\% de la variabilidad de los datos. Para una caso como el que presenta este trabajo donde hay muchas variables independientes, se puede decir que el valor de R2 conseguido es generalmente bueno.
 
-\subsection{Mean absolute percentage error (MAPE)}
-El error porcentual absoluto medio (\textit{Mean absolute percentage error}) mide la precisión de la predicción como una proporción entre el valor real y valor a predecir. Su fórmula es \cite{enwiki:1225070385}:
+\subsection{Mean absolute percentage error (MAPE)}\label{mape}
+El \textit{mean absolute percentage error} (error porcentual absoluto medio) mide la precisión de la predicción como una proporción entre el valor real y el valor predicho. Su fórmula es \cite{enwiki:1225070385}:
 \begin{equation}
 	MAPE = 100 \frac{1}{n} \sum_{t=1}^{n} |\frac{A_t - F_t}{A_T} 
 \end{equation}
@@ -981,12 +995,13 @@ donde
 	\item $A_t$ es el valor real,
 	\item $F_t$ es el valor predicho.
 \end{itemize}
-Los resultados obtenidos son:
+Los resultados obtenidos del MAPE son:
 \begin{itemize}
 	\item Para valencia:
 	\begin{table}[H]
 		\centering
 		\caption{MAPE de valencia}
+		\label{tab:mapevalencia}
 		\begin{tabular}{|c|c|}
 			\hline
 			\textbf{Algoritmo} & \textbf{MAPE} \\
@@ -1002,6 +1017,7 @@ Los resultados obtenidos son:
 	\begin{table}[H]
 		\centering
 		\caption{MAPE de activación}
+		\label{tab:mapeactivacion}
 		\begin{tabular}{|c|c|}
 			\hline
 			\textbf{Algoritmo} & \textbf{MAPE} \\
@@ -1014,7 +1030,7 @@ Los resultados obtenidos son:
 		\end{tabular}
 	\end{table}
 \end{itemize}
-
+Esta métrica es similar a MAE (ver apartado \ref{mae}), con la diferencia de que representa el error en forma de porcentaje. Los modelos con menor porcentaje de error son los modelos más precisos. Según los resultados observados en el experimento (ver tablas \ref{tab:mapevalencia} y \ref{tab:mapeactivacion}), los modelos más precisos son: regresión lineal para valencia, con un 13.7\% de error; y bosque aleatorio para activación con 16\% de error. En general, los modelos pueden considerarse como buenos según esta métrica. 
 
 
 
@@ -1028,8 +1044,24 @@ Los resultados obtenidos son:
 %%%%%%%%%%%%%% - CONCLUSIONES - %%%%%%%%%%%%%
 \newpage
 \section{Conclusiones}
+En este trabajo se ha realizado una comparativa de algoritmos de regresión para la predicción de emociones musicales. Para ello se ha realizado un estudio previo de la disciplina MER (marco teórico, estado actual y futuro). También se han definido los problemas de regresión de \textit{Machine Learning} y las técnicas empleadas en el experimento. Finalmente, se han aplicado los distintos modelos y se han calculado métricas para valorar su rendimiento.
 
+ 
 \subsection{Conclusiones}
+\subsection{Competencias y conocimientos}
+En el desarrollo del trabajo, se han empleado diferentes técnicas y conocimientos adquiridos durante el estudio del grado. Algunas de ellas son:
+\begin{itemize}
+	\item Uso del lenguage Python de programación. Conocimiento adquirido a través del estudio de varias asignaturas como \textit{Protocolos para la Transmisión de Audio y Video en Internet} o \textit{Tratamiento Digital del Sonido}. Más específicamente, el uso del entorno de Anaconda y los cuadernos \textit{Jupyter}. El uso de este entorno para desarrollos de \textit{Machine Learning} es bastante habitual, motivo de su elección para el desarrollo del experimento.
+	\item De la asignatura de \textit{Tratamiento Digital del Sonido} también se han adquirido los conocimientos necesarios para el uso y el manejo de las características acústicas de las canciones.
+	\item Durante el experimento, se emplean técnicas de \textit{Machine Learning}. En la asignatura de \textit{Tratamiento Digital del Sonido} se aprendieron los conocimiento básicos de este campo, y algunas de las técnicas empleadas durante el trabajo.
+	\item De la asignatura \textit{Estadística para Medios Audiovisuales}, se adquirieron los conocimientos para comprender los conceptos estadísticos de las métricas utilizadas en la evaluación de los modelos
+\end{itemize}
+Además de las competencias adquiridas en el estudio del grado, otras nuevas se han aprendido durante el desarrollo del trabajo. Como son:
+\begin{itemize}
+	\item Empleo del lenguaje Latex para la redacción de la memoria. Su uso ha resultado de gran ayuda para estructurar el texto, o incluir en la composición de la memoria diferentes elementos como referencias, imágenes y tablas.
+	\item Aumentar el conocimiento en \textit{Machine Learning} mediante técnicas y algoritmos no estudiados en el grado.
+	\item Conocimiento adquirido durante la investigación en el campo de estudio del MER.
+\end{itemize}
 \subsection{Futuras líneas de trabajo}
 
 Una vez realizados los experimentos propuestos para el trabajo se detectan las siguientes líneas de estudio futuras para continuar mejorando y expandiendo esta aplicación MER:
@@ -1037,7 +1069,7 @@ Una vez realizados los experimentos propuestos para el trabajo se detectan las s
 	\item Implementación de otros algoritmos y técnicas de Machine Learning con el objetivo de mejorar las puntuaciones de precisión en la predicción obtenidas en el experimento.
 	\item Hubiera sido interesante contar con una base de datos donde, el espacio bidimensional de Russell, estuviera segmentado en distintas emociones. Como se comentaba en el apartado \ref{combi}, una combinación discreta-dimensional de la taxonomía de las emociones puede ayudar en la efectividad del modelo. De esta forma, la aplicación sería mucho más intuitiva puesto que trabajaría directamente con emociones discretas en lugar de su representación mediante valencia-activación. Por ejemplo, si una canción está identificada con la emoción "alegre", se puede probar a simple vista si la aplicación predijo "alegre" de forma satisfactoria u otra emoción.
 	\item La letra de las canciones juega un papel importante en las emociones percibidas por el oyente. Una posible línea de trabajo es la introducción de la letra como una variable independiente más del modelo. Al estudiar solo las características acústicas de la cancion, se pierden los posibles matices que pueda tener la letra. Una canción puede tener una letra triste pero sin embargo una música alegre, entonces la emoción percibida se puede ver "contaminada" en gran manera por la letra.
-	\item El complemento más obvio a este trabajo es la integración de este desarrollo en una aplicación final (de interfaz de usuario amigable). Un caso claro sería un reproductor streaming de música, que pueda recomendar o clasificar canciones en función de sus emociones. O un editor de video que, como complemento a la imagen, quiera incluir música específica para evocar en el usuario una emoción precisa
+	\item El complemento más obvio a este trabajo es la integración de este desarrollo en una aplicación final (de interfaz de usuario amigable). Un caso claro sería un reproductor streaming de música, que pueda recomendar o clasificar canciones en función de sus emociones. O un editor de video que, como complemento a la imagen, quiera incluir música específica para evocar en el usuario una emoción precisa.
 \end{itemize}
 
 
