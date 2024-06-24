@@ -235,7 +235,7 @@ Uno de los más comunes usado en psicología es el modelo dimensional propuesto 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\linewidth]{figs/russell}
-	\caption{Modelo dimensional de Russell}
+	\caption{Modelo dimensional de Russell \cite{posner2005circumplex}}
 	\label{fig:russell}
 \end{figure}
 
@@ -288,7 +288,7 @@ La evaluación de los sistemas MER está directamente relacionada con la taxonom
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\linewidth]{figs/mer_traditional_system}
-	\caption{Sistema tradicional MER}
+	\caption{Sistema tradicional MER \cite{GomezCanon2021SPM}}
 	\label{fig:mertraditionalsystem}
 \end{figure}
 \subsubsection{Estado futuro MER}
@@ -387,7 +387,7 @@ Existen diferentes tipos de \textit{cross-validation}, pero el más utilizado es
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\linewidth]{figs/cross-validation}
-	\caption{Ejemplo de funcionamiento de \textit{cross-validation} para $k = 5$}
+	\caption{Ejemplo de funcionamiento de \textit{cross-validation} para $k = 5$ \cite{crossvalidation}}
 	\label{fig:cross-validation}
 \end{figure}
 En cada iteración se calculan las métricas de rendimiento, para finalmente, hacer un promedio y obtener una estimación total del rendimiento del modelo.
@@ -419,6 +419,16 @@ El principio de los árboles de regresión es segmentar el espacio característi
 En el libro \citetitle{hastie2009elements} se explican los modelos de decisión con un ejemplo simple: imaginemos un problema de regresión con una respuesta continua $Y$ y los inputs $X_1$ y $X_2$. Primero se divide el espacio en dos regiones. Se elige la variable y el punto de divisón para lograr el mejor ajuste. Luego, una o ambas regiones se dividen en dos regiones más. Continúa el proceso hasta que se aplica alguna regla de detención.
 
 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{figs/decission_tree}
+	\caption{Funcionamiento de un árbol de decisión \cite{gareth2013introduction}}
+	\label{fig:decissiontree}
+\end{figure}
+
+
+Los métodos basados en árboles de decisión son simples, y útiles para la interpretación. Sin embargo, normalmente no son competitivos con los mejores enfoques de aprendizaje supervisado en términos de predicción \cite{gareth2013introduction}.
 
 \subsubsection{Bosques aleatorios}
 Los árboles aleatorios (random forests) son un método de aprendizaje para clasificación y regresión que consiste en construir una multitud de árboles de decisión (ver ~\ref{decision_tree}) en la etapa de entrenamiento, y así obtener el modo de las clases (clasificación) o la media de las predicciones (regresión) de los árboles individuales.
@@ -452,7 +462,7 @@ Donde los parámetros $\beta_0, \beta_1, ..., \beta_k$ son desconocidos y deben 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\linewidth]{figs/linear_regression}
-	\caption{Regresión Lineal}
+	\caption{Regresión Lineal \cite{fahrmeir2013regression}}
 	\label{fig:linearregression}
 \end{figure}
 El objetivo de la regresión lineal es encontrar la mejor línea recta que minimiza la suma de los errores cuadrados (diferencias entre los valores reales y los valores predichos).
@@ -474,16 +484,6 @@ La regresión ridge se utiliza cuando hay muchas variables independientes y se q
 
 
 
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.7\linewidth]{figs/decission_tree}
-	\caption{Funcionamiento de un árbol de decisión}
-	\label{fig:decissiontree}
-\end{figure}
-
-
-Los métodos basados en árboles de decisión son simples, y útiles para la interpretación. Sin embargo, normalmente no son competitivos con los mejores enfoques de aprendizaje supervisado en términos de predicción \cite{gareth2013introduction}.
 
 
 
@@ -581,14 +581,14 @@ El resultado ha sido el documento \textit{recap-data.csv}, el cual contiene toda
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.7\linewidth]{figs/data}
+	\includegraphics[width=0.9\linewidth]{figs/data}
 	\caption{Recopilación de datos}
 	\label{fig:data}
 \end{figure}
 Una vez recopilados los datos en la tabla que se muestra en la Figura \ref{fig:data}, se definen las variables independientes y las variables objetivo del sistema. Como se comenta en el apartado anterior, esta aplicación MER se compone de dos variables objetivo. Por lo tanto, las variables se dividen en: un conjunto de variables independientes, una variable objetivo para la valencia, y otra variable objetivo para la activación.
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.7\linewidth]{figs/variables}
+	\includegraphics[width=0.8\linewidth]{figs/variables}
 	\caption{Definición de variables explicativas y variables objetivo}
 	\label{fig:variables}
 \end{figure}
@@ -1044,10 +1044,21 @@ Esta métrica es similar a MAE (ver apartado \ref{mae}), con la diferencia de qu
 %%%%%%%%%%%%%% - CONCLUSIONES - %%%%%%%%%%%%%
 \newpage
 \section{Conclusiones}
-En este trabajo se ha realizado una comparativa de algoritmos de regresión para la predicción de emociones musicales. Para ello se ha realizado un estudio previo de la disciplina MER (marco teórico, estado actual y futuro). También se han definido los problemas de regresión de \textit{Machine Learning} y las técnicas empleadas en el experimento. Finalmente, se han aplicado los distintos modelos y se han calculado métricas para valorar su rendimiento.
+En este trabajo se ha realizado una comparativa de algoritmos de regresión para la predicción de emociones musicales. Para ello se ha realizado un estudio previo de la disciplina de MER (marco teórico, estado actual y futuro). También se han definido los problemas de regresión de \textit{Machine Learning} y las técnicas empleadas en el experimento. Finalmente, se han aplicado los distintos modelos y se han calculado métricas para valorar su rendimiento.
+\newline
+A continuación se detallan las conclusiones obtenidas de los resultados del experimento. Se analizan también las competencias adquiridas durante el estudio del grado que fueron empleadas en el trabajo. Por último, se proponen las posibles líneas futuras que seguiría el trabajo.
 
  
 \subsection{Conclusiones}
+El primer objetivo propuesto para el trabajo es el estudio de la disciplina de MER. Este objetivo se ha cumplido: para la elaboración del capítulo de \textit{Estado del arte} se ha llevado a cabo una investigación sobre este campo mediante la lectura de libros, artículos y trabajos. La primera conclusión obtenida del trabajo, es la complejidad del campo de estudio de MER. Partiendo de la propia naturaleza de las emociones, no es posible construir un sistema que prediga la totalidad de las emociones que un oyente extrae de la escucha de una canción. El apartado \ref{emo} describe dos tipos de emociones (percibidas e inducidas). Mediante el análisis de las características acústicas de la canción solo se pueden estimar las emociones percibidas, al estar relacionadas directamente con el momento de la escucha de la canción. Un sistema en el que se introduzcan variables o elementos que analicen las emociones inducidas sería demasiado complejo.
+\newline
+El desarrollo del experimento se ha desarrollado en su totalidad usando el lenguaje Python, cumpliendo así los objetivos marcados para el trabajo. El uso de los cuadernos Jupyter ha resultado de gran ayuda para la ejecución del código. Al igual que las librerías como \textit{scikit-learn} o \textit{Pandas}, muy útiles para el desarrollo de algoritmos y el manejo de datos.
+\newline
+Desde el punto de vista del empleo de técticas de \textit{Machine Learning} se concluye que, los modelos más óptimos no son los mismos para predecir valencia que para predecir activación. Los resultado son claros: todas las métricas utilizadas para la comparativa han dado los mismo resultados. En el caso de valencia, el algoritmo más óptimo es la regresión lineal. Mientras que para activación es el bosque aleatorio.  Al ser un sistema compuesto por dos variables objetivo diferente, se puede usar un algoritmo diferente para cada una.
+
+
+
+
 \subsection{Competencias y conocimientos}
 En el desarrollo del trabajo, se han empleado diferentes técnicas y conocimientos adquiridos durante el estudio del grado. Algunas de ellas son:
 \begin{itemize}
