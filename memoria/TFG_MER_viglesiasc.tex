@@ -140,9 +140,26 @@
 \addcontentsline{toc}{section}{Agradecimientos}
 \section*{Agradecimientos}
  
+\begin{flushleft}
+A mis padres, que se dejaron la vida.
 
-aquí van los agradecimientos
 
+A Pedro y Aida, que ayudaron a que fuera posible.
+
+
+A Yaiza, porque la mitad es suyo.
+
+
+A lo compañeros, por compartir apuntes y horas de biblioteca.
+
+
+A mi tutora Rebeca, por darme la oportunidad de hacer este trabajo juntos.
+
+
+A todos los que en algún momento me echaron una mano para seguir estudiando: familia, amigos, compañeros de trabajo y jefes.
+
+
+\end{flushleft}
 
 
 
@@ -924,7 +941,7 @@ En este punto del experimento, el modelo de regresión \textit{ridge} está list
 Para analizar los resultados obtenidos, primero se ha puesto el foco en las características. Mediante el uso de la función \textit{feature\_importances\_} se ha calculado la importancia que han tenido cada una de las variables independientes en los modelos de árbol de decisión y bosque aleatorio. Esta función devuelve un valor entre [0, 1], y la suma de todas las importancias de las características es igual a 1. Una vez calculadas todas las importancias, se han ordenado de mayor a menor para obtener una representación visual de las características más importantes.
 
 
-En los modelos de árbol de decisión (tanto para la predicción de valencia como de activación), destacan muy pocas características por encima de la mayoría que tienen valor 0. En cada modelo, hay una característica que destaca por encima del resto (Figuras \ref{fig:importtreeregval} y \ref{fig:importtreeregar}): para valencia es \textit{audspec\_lengthL1norm\_sma\_de\_stddev}\footnote{Desviación estándar de los coeficientes delta de la media móvil suavizada de la norma L1 del espectro auditivo.}, y para activación \textit{audspec\_lengthL1norm\_sma\_amean}\footnote{Media aritmética de la media móvil suavizada de la norma L1 del espectro auditivo.}.
+En los modelos de árbol de decisión (tanto para la predicción de valencia como de activación), destacan muy pocas características por encima de la mayoría que tienen valor 0. En cada modelo, hay una característica que destaca por encima del resto (Figuras \ref{fig:importtreeregval} y \ref{fig:importtreeregar}): para valencia es \textit{audspec\_lengthL1norm\_sma\_de\_stddev}\footnote{Desviación estándar de los coeficientes delta de la media móvil suavizada de la norma L1 del espectro auditivo.}, y para activación \textit{audspec\_lengthL1norm\_sma\_amean}\footnote{Media aritmética de la media móvil suavizada de la norma L1 del espectro auditivo.}. Ambas características miden aspectos del espectro auditivo.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.6\linewidth]{figs/import_tree_reg_val}
@@ -939,7 +956,7 @@ En los modelos de árbol de decisión (tanto para la predicción de valencia com
 \end{figure}
 
 
-Para los modelos de bosque aleatorio se observa un resultado similar al obtenido en los de árbol de decisión (Figuras \ref{fig:importrandomforestval} y \ref{fig:importrandomforestar}): unas pocas características tiene valor distinto de 0. En este caso los resultados están más suavizados, es decir, los valores de las características más importantes son similares. Destacan sobre el resto características diferentes en cada modelo: para el modelo de valencia destacan \textit{audspec\_lengthL1norm\_sma\_de\_stddev} y \textit{pcm\_fftMag\_mfcc\_sma[1]\_amean}\footnote{Media aritmética de los coeficientes cepstrales en la frecuencia Mel (MFCC) suavizados mediante una media móvil, calculados a partir de la magnitud de la FFT de la señal de audio digitalizada.}, y para activación \textit{audspec\_lengthL1norm\_sma\_amean}
+Para los modelos de bosque aleatorio se observa un resultado similar al obtenido en los de árbol de decisión (Figuras \ref{fig:importrandomforestval} y \ref{fig:importrandomforestar}): unas pocas características tienen valor distinto de 0. En este caso los resultados están más suavizados, es decir, los valores de las características más importantes son similares. Destacan sobre el resto características diferentes en cada modelo: para el modelo de valencia destacan \textit{audspec\_lengthL1norm\_sma\_de\_stddev} y \textit{pcm\_fftMag\_mfcc\_sma[1]\_amean}\footnote{Media aritmética de los coeficientes cepstrales en la frecuencia Mel (MFCC) suavizados mediante una media móvil, calculados a partir de la magnitud de la FFT de la señal de audio digitalizada.}, y para activación \textit{audspec\_lengthL1norm\_sma\_amean}. Estas características miden aspectos del espectro auditivo y del espectro de frecuencia de Mel.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\linewidth]{figs/import_random_forest_val}
@@ -961,7 +978,7 @@ Para hacer el análisis en los modelos de regresión lineal y \textit{ridge} se 
 	\item Un coeficiente de 0 sugiere que la característica no tiene ninguna relación lineal con la variable dependiente.
 \end{itemize}
 
-Para regresión lineal (tanto en valencia como en activación) hay dos variables que destacan por encima del resto (Figuras \ref{fig:importlinearregval} y \ref{fig:importlinearregar}): \textit{shimmerLocal\_sma\_de\_amean}\footnote{Media aritmética de los coeficientes delta de la media móvil suavizada del shimmer local.} y \textit{jitterDDP\_sma\_de\_amean}\footnote{Media aritmética de los coeficientes delta de la media móvil suavizada del jitter DDP.}.
+Para regresión lineal (tanto en valencia como en activación) hay dos variables que destacan por encima del resto (Figuras \ref{fig:importlinearregval} y \ref{fig:importlinearregar}): \textit{shimmerLocal\_sma\_de\_amean}\footnote{Media aritmética de los coeficientes delta de la media móvil suavizada del shimmer local.} y \textit{jitterDDP\_sma\_de\_amean}\footnote{Media aritmética de los coeficientes delta de la media móvil suavizada del jitter DDP.}. Estas características miden aspectos relacionados con la variabilidad temporal del audio (\textit{Jitter}) y la variación de la amplitud del audio (\textit{Shimmer}).
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\linewidth]{figs/import_linear_reg_val}
@@ -974,7 +991,7 @@ Para regresión lineal (tanto en valencia como en activación) hay dos variables
 	\caption{Características más importantes para regresión lineal (predicción de activación)}
 	\label{fig:importlinearregar}
 \end{figure}
-En los modelos de regresión \textit{ridge} no hay características que destaquen por encima del resto, y además, todos los valores están cercanos a 0 (Figuras \ref{fig:importridgeval} y \ref{fig:importridgear}). Esto indica que todas las características influyen de forma similar en el resultado de la variable objetivo.
+En los modelos de regresión \textit{ridge}, probablemente debido al efecto de la normalización,  se aprecia un decrecimiento gradual en la importancia de las características (Figuras \ref{fig:importridgeval} y \ref{fig:importridgear}). Esto indica que todas las características influyen de forma similar en el resultado de la variable objetivo.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\linewidth]{figs/import_ridge_val}
@@ -993,7 +1010,7 @@ En los modelos de regresión \textit{ridge} no hay características que destaque
 \subsection{Comparativa de modelos}
 La evaluación de modelos predictivos se realiza mediante la comparación de las variables objetivo (predichas por el sistema) con los valores reales. En este trabajo, al tener dos variables objetivo, han de compararse los resultados obtenidos para la valencia y para la activación por separado.
 
-La salida de este sistema de MER es la predicción de emociones representadas por dos magnitudes. En decir, un punto en un espacio bidimensional. En la siguiente imagen \ref{fig:results} se muestra una comparativa entre el valor real y el predicho de cinco canciones del conjunto de variables de test. 
+La salida de este sistema de MER es la predicción de emociones representadas por dos magnitudes. En decir, un punto en un espacio bidimensional. En la siguiente Figura \ref{fig:results} se muestra una comparativa entre el valor real y el predicho de cinco canciones del conjunto de variables de test. 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1\linewidth]{figs/results}
